@@ -1,0 +1,42 @@
+/* 
+    Document   : webDesign
+    Created on : Jul 10, 2015, 8:10:50 PM
+    Author     : bola odesile
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+.tableSet{
+   height:270px;
+    width:640px;
+    border: 1px solid gray;
+    overflow: scroll;
+    
+    
+}
+
+.tableSet td{
+   
+   
+}
+.questionSetter{
+    height:300px;
+    width:650px;
+    background-color: whitesmoke;
+    margin:auto;
+    overflow: scroll;
+}
+
+.middle{
+    margin: auto;
+}
+.designerDiv{
+    overflow:scroll; 
+    border:2px solid red;
+    
+}

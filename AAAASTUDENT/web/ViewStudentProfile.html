@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title id="pageTitle"> </title>
+
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+
+
+
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+    <script src="resource/js/metro-tab-control.js" type="text/javascript"></script>
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+
+    <!--custom-->
+    <script src="resource/js/metro-dropdown.js" type="text/javascript"></script>
+    <script src="resource/js/metro-dialog.js" type="text/javascript"></script>
+
+    <script src="resource/js/metro-input-control.js" type="text/javascript"></script>
+
+
+    <script src="resource/js/github.info.js" type="text/javascript"></script>
+
+ <script src="ViewStudentProfile.js" type="text/javascript"></script>
+
+
+</head>
+<body class="metro">
+    <header class="bg-black">
+        <h2 class="fg-grayLighter place-left">STS Admin</h2>
+
+        <nav class="margin10 navigation-bar dark place-right">
+            <nav class="navigation-bar-content">
+                <item class="element place-right"><a href="Students.html" class="fg-amber margin10"><i class="icon-user"></i>&nbsp;Students</a></item>
+                <item class="element place-right"><a href="Report.html" class="fg-white margin10"><i class="icon-stats-2"></i>&nbsp;Reports</a></item>
+                
+                <item class="element place-right"><a href="SchedulePage.html" class="fg-white margin10"><i class="icon-clock"></i>&nbsp;Exam Schedules</a></item>
+
+                <item class="element place-right">
+                    <a href="OngoingExams.html" class="fg-white margin10"><i class="icon-film"></i>&nbsp;Ongoing Exams</a>
+                </item>
+
+
+
+            </nav>
+        </nav>
+    </header>
+
+    <div class="clearLarge"></div>
+    <div class="clearLarge"></div>
+    <div class="page">
+
+        <div class="page-region-content">
+            <!-- top-->
+            <div class="bg-grayLighter">
+                <div class="grid">
+                    <div class="row">
+                        <div class="span12">
+                            <h1 class="margin20 topicHead">
+                                <a  id="backButton"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>Students Page |
+                                <small id="explanation" class="on-right"></small>
+
+                            </h1>
+                        </div>
+                        <div class="span2">
+                            <div class=" fg-black margin20">
+                                <a class="dropdown-toggle" href="#">
+                                    <span class="fg-gray">Admin&nbsp;<i class="icon-user"></i></span>
+                                </a>
+                                <ul class="dropdown-menu" data-role="dropdown">
+                                    <li><a href="#">Edit Account</a></li>
+                                    <li><a href="#">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid fluid">
+                <div class="row">
+                    <!--sidebar-->
+                    <div class="span3">
+
+                        <img src="resource/img/logo.jpg" alt="logo" width="300" height="250" />
+                    </div>
+                    <!--Content-->
+
+                    <div class="span6">
+                        <a id="editAccount" href="EditStudentProfile.html" class="bg-darkGreen fg-white"><i class="icon-pencil"></i>Edit Profile</a>
+                        <a href="Students.html" id="deleteStudent" class="bg-darkRed fg-white offset1"><i class="icon-cancel-2"></i>Delete Student</a>
+                
+                        
+                        <div class="grid vertical-scroll">
+                            <div class="row">
+                                <div class="span4">
+                                    <img id="studentImage" src="resource/img/logo.jpg" alt="uploaded" width="150" height="150" />
+                                    <div class="clear"></div>
+                                    <h4 id="student"></h4>
+                                </div>
+                                <div class="span8">
+                                    <div class="listview">
+                                        <a class="list" id="registeredTotal">
+                                            <div class="list-content">
+                                                <i class="icon-bookmark icon fg-lightBlue"></i>
+                                                <div class="data">
+
+                                                    <span class="list-title fg-lightBlue">
+                                                        Total Exams Registered For:
+                                                    </span>
+                                                    <span class="list-remark fg-lightBlue" id="totalRegistered">0</span>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a  class="list" id="completedTotal">
+                                            <div class="list-content bg-lightBlue">
+                                                <i class="icon-checkmark fg-white icon"></i>
+                                                <div class="data">
+
+                                                    <span class="list-title fg-white">
+                                                        Total Exams Completed:
+                                                    </span>
+                                                    <span class="list-remark fg-white" id="totalCompleted">0</span>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list">
+                                            <div class="list-content">
+                                                <i class="icon-cancel fg-lightBlue icon"></i>
+                                                <div class="data fg-lightBlue">
+                                                    <span class="list-title">
+                                                        Total Exams Canceled:
+                                                    </span>
+                                                    <span class="list-remark" id="totalCanceled">0</span>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a  class="list" id="missedTotal">
+                                            <div class="list-content bg-lightBlue fg-white">
+                                                <i class="icon-stumbleupon icon"></i>
+                                                <div class="data">
+
+                                                    <span class="list-title">
+                                                        Total Exam Missed:
+                                                    </span>
+                                                    <span class="list-remark" id="totalMissed">0</span>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                    </div>
+                    <!--stats-->
+                    <div class="span3">
+                        <fieldset>
+                            <legend>
+                                Student Stats
+                            </legend>
+                            
+                            <div class="listview-outlook">
+                                <a href="Students.html" class="list">
+                                    <div class="list-content">
+                                        <div class="data">
+
+                                            <span class="list-title">Total Number Of Students</span>
+                                            <span class="list-remark fg-red" id="totalStudents">0</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer class="bg-white">
+        <p class="foot fg-darkOrange">STARKS Copyright &copy; 2014</p>
+    </footer>
+</body>
+</html>

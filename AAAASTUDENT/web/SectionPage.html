@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>STS | Pick Exam</title>
+    
+    
+       
+       
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           var rules= $('#rules');
+           var toHide=$('#picker');
+           rules.hide();
+            $('.clicker').click(
+            function(){
+                toHide.hide();
+                rules.show();
+            }    
+            );
+        });
+        </script>
+    <script src="SectionPage.js" type="text/javascript"></script>
+    <!--<script src="resource/js/metro-loader.js" type="text/javascript"></script>
+    <script src="resource/js/docs.js" type="text/javascript"></script>
+    <script src="resource/js/github.info.js" type="text/javascript"></script>-->
+</head>
+<body class="metro">
+    <header class="bg-black padding5">
+        <h2 class="fg-grayLighter place-left">STS</h2>
+        <img src="resource/img/logo.jpg" class="place-right logoThumbnail margin5" />
+    </header>
+    <div class="clearLarge"></div>
+    <div class="page">
+      <div class="page-region">
+          <div class="page-region-content">
+              <h1 class="margin20 topicHead">
+                  Exam Selector |
+                  <small class="on-right">Pick from the list of exam(s) displayed</small>
+              </h1>
+              <div class="clear"></div>
+             <div class="normalCentral">
+                <fieldset>
+                    <legend>Enter Credentials Here</legend>
+                    <form action="index.xhtml">
+                        <div id="picker">
+                            
+                            <table class="table striped bordered">
+                                <thead>
+                                    <tr class="info fg-white">
+                                        <th>S/N</th>
+                                        <th>Exam Subject</th>
+                                         <th>Start-Date</th>
+                                        <th>Start-Time</th>
+                                         <th>Time-Available in minutes</th>
+                                        <th>Candidates</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="hovered" id="tableBody" >
+                                            </tbody>
+                            </table>
+
+                        </div>
+                        
+                        <div id="rules">                          
+                       Rule No 1:
+                       
+                       <br/><br/>
+                       <a id="linkage" class="bg-darkCobalt fg-white">Proceed</a>
+                        </div>
+                    </form>
+                </fieldset>
+             </div>
+          </div>
+      </div>
+    </div>
+    <div class="clear">
+        <!--For clearing-->
+    </div>
+    <footer class="bg-white">
+        <p class="foot fg-darkOrange">STARKS Copyright &copy; 2014</p>
+    </footer>
+</body>
+</html>
+
+
+       
+   

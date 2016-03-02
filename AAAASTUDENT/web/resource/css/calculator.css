@@ -1,0 +1,31 @@
+/* 
+    Document   : calculator
+    Created on : Sep 13, 2014, 10:51:49 PM
+    Author     : bola odesile
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+    
+}
+
+.keypads{
+    
+    width:7%;
+    float: left;
+    margin: 1px;
+    border-color: black;
+    border:solid;
+    cursor: pointer;
+    
+    
+    
+}
+
+.divs{
+    width: 50%;
+    float: left;
+}
+

@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title id="pageTitle"></title>
+
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+
+
+
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <!--custom-->
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+    <script src="resource/js/metro-dropdown.js" type="text/javascript"></script>
+    <script src="resource/js/metro-dialog.js" type="text/javascript"></script>
+    <script src="resource/js/github.info.js" type="text/javascript"></script>
+    <!--<script src="resource/js/metro-loader.js" type="text/javascript"></script>
+    <script src="resource/js/docs.js" type="text/javascript"></script>
+    -->
+    <script src="OpenedExam.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(
+            function () {
+                $('.cancel-exam').click(
+                    function () {
+                        $.Dialog({
+                            shadow: true,
+                            overlay: true,
+                            flat: true,
+                            title: 'Cancel Exam?',
+                            icon: '<i class="icon-cancel fg-red"></i>',
+                            padding:10,
+                            content: '<label>Are you sure you want to cancel exam?</label>' +
+                                '<a href="#" class="button">Yes</a><a href="#" class="button">No</a>',
+                            
+                        });
+                    }
+                    );
+            }
+            );
+    </script>
+
+</head>
+<body class="metro">
+    <header class="bg-black">
+        <h2 class="fg-grayLighter place-left">STS Admin</h2>
+
+        <nav class="margin10 navigation-bar dark place-right">
+            <nav class="navigation-bar-content">
+                <item class="element place-right"><a href="Students.html" class="fg-white margin10"><i class="icon-user"></i>&nbsp;Students</a></item>
+                <item class="element place-right"><a href="Report.html" class="fg-white margin10"><i class="icon-stats-2"></i>&nbsp;Reports</a></item>
+                <item class="element place-right"><a href="SchedulePage.html" class="fg-white margin10"><i class="icon-clock"></i>&nbsp;Exam Schedules</a></item>
+
+                <item class="element place-right">
+                    <a href="OngoingExams.html" class="fg-amber margin10"><i class="icon-film"></i>&nbsp;Ongoing Exams</a>
+                </item>
+
+
+
+            </nav>
+        </nav>
+    </header>
+
+    <div class="clearLarge"></div>
+    <div class="clearLarge"></div>
+    <div class="page">
+
+        <div class="page-region-content">
+            <!-- top-->
+            <div class="bg-grayLighter">
+                <div class="grid">
+                    <div class="row">
+                        <div class="span12">
+                            <h1 class="margin20 topicHead">
+                                <a id="backButton"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>Ongoing Exams |
+                                <small id="explanation" class="on-right"> </small>
+
+                            </h1>
+                        </div>
+                        <div class="span2">
+                            <div class=" fg-black margin20">
+                                <a class="dropdown-toggle" href="#">
+                                    <span class="fg-gray">Admin&nbsp;<i class="icon-user"></i></span>
+                                </a>
+                                <ul class="dropdown-menu" data-role="dropdown">
+                                    <li><a href="#">Edit Account</a></li>
+                                    <li><a href="#">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            <div class="grid fluid">
+                <div class="row">
+                    <!--sidebar-->
+                    <div class="span3">
+                        <nav class="sidebar margin10">
+                            <ul>
+                                <li class="stick bg-green" id="extratime">
+                                    <a class="dropdown-toggle" href="#"><i class="icon-clock"></i>Give Extra Time</a>
+                                    <ul class="dropdown-menu" id="exams1" data-role="dropdown">
+                                 
+                                    </ul>
+                                </li>
+                                <li class="stick bg-red" id="canceler">
+                                    <a class="dropdown-toggle" href="#"><i class="icon-cancel"></i>Cancel Exam Session</a>
+                                    <ul class="dropdown-menu" id="exams2" data-role="dropdown">
+                                        </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <img src="resource/img/logo.jpg" alt="logo"  width="300" height="250" />
+                     
+                    </div>
+                    <!--Content-->
+                    <div>
+                         <button id="metadata"  class="margin10 bg-yellow fg-white button">
+                            <i  class="icon-file-2"></i>
+                            &nbsp;
+                           Grade scheme
+                        </button>
+                        <button id="viewStudents"  class="margin10 bg-darkGreen fg-white button">
+                            <i  class="icon-open"></i>
+                            &nbsp;
+                            View Students
+                        </button>
+                            <button id="viewQuestions"  class="margin10 bg-grayDark fg-white button">
+                            <i  class="icon-cube"></i>
+                            &nbsp;
+                            View Questions
+                        </button>
+                        <button id="time"  class="margin10 bg-darkGreen fg-white button">
+                            <i class="icon-clock"></i>
+                            &nbsp;
+                            Add/Remove Time
+                        </button>
+                        <button id="cancel" class="margin10 bg-darkRed fg-white button">
+                            <i class="icon-cancel"></i>
+                            &nbsp;
+                            Cancel Exam
+                        </button>
+                        <button id="end" class="margin10 bg-darkBlue fg-white button">
+                            <i class="icon-flag-2"></i>
+                            &nbsp;
+                            Grade Students
+                        </button>
+                               <button id="getReport"  class="margin10 bg-darkIndigo fg-white button">
+                            <i class="icon-flag-2"></i>
+                            &nbsp;
+                            Generate Result
+                        </button>
+                        
+                        
+                    </div>
+                    <div class="span6">
+                        <div class="grid">
+                            <div class="row">
+                                <div class="listview span8">
+                                    <a class="list"  id="startDetails" >
+                                        
+                                        <div class="list-content" data-hint="View more details on current test" >
+                                            <i class="icon-clock icon fg-magenta"></i>
+                                            <div class="data" >
+                                          <span class="list-title fg-magenta">
+                                                    Start Time:
+                                                </span>
+                                                <span class="list-remark fg-magenta" id="startTime">0:30A.M</span>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list" id="presentCandidates">
+                                        <div class="list-content bg-magenta" data-hint="View present candidates">
+                                            <i class="icon-checkmark fg-white icon"></i>
+                                            <div class="data">
+
+                                                
+                                                <span  class="list-title fg-white">
+                                                  
+                                                </span>
+                                                <span class="list-remark fg-white" id="startStudents">0</span>
+                                                
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list" id="candidatesSubmitted" data-hint="View submitted candidates">
+                                        <div class="list-content">
+                                            <i class="icon-flag-2 fg-magenta icon"></i>
+                                            <div class="data fg-magenta">
+                                                <span class="list-title">
+                                                    Students Submitted:
+                                                </span>
+                                                <span class="list-remark" id="submitted">0</span>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list" id="inSessionsList">
+                                        <div class="list-content bg-magenta fg-white" data-hint="View logged in active students">
+                                            <i class="icon-record icon"></i>
+                                            <div class="data">
+
+                                                <span class="list-title">
+                                                    Students Still In Session:
+                                                </span>
+                                                <span class="list-remark" id="inSession">0</span>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list" id="inSessionsCancelled">
+                                        <div class="list-content fg-magenta" data-hint="View cancelled session candidates">
+                                            <i class="icon-cancel-2 icon fg-magenta"></i>
+                                            <div class="data">
+                                                <span class="list-title">
+                                                    Sessions Cancelled:
+                                                </span>
+                                                <span class="list-remark" id="cancelled">0</span>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                      
+                                        </div>
+                    <!--stats-->
+                    <div class="span3">
+                        <fieldset>
+                            <legend id="subs">
+                               Exam Statistics
+                            </legend>
+                            <div class="listview-outlook">
+                                <a href="#" class="list">
+                                    <div class="list-content">
+                                        <div class="data">
+                                           
+                                            <span class="list-title">Duration </span>
+                                            <span class="list-remark fg-red" id="duration">0</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a  class="list" id="requestSchedule">
+                                    <div class="list-content">
+                                        <div class="data">
+                                            <span class="list-title">Total Number Of Scheduled Students</span>
+                                            <span class="list-remark fg-orange" id="scheduled">0</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a class="list" id="presentStuds">
+                                    <div class="list-content">
+                                        <div class="data">
+                                            <span class="list-title" >Total Present</span>
+                                            <span class="list-remark fg-green" id="startStudent">0</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a  class="list" id="absentee">
+                                    <div class="list-content">
+                                        <div class="data">
+                                            <span class="list-title">Total Absent</span>
+                                            <span class="list-remark fg-lightBlue" id="absent">0</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="list">
+                                    <div class="list-content">
+                                        <div class="data">
+                                            <span class="list-title">Percentage In Attendance</span>
+                                            <span class="list-remark fg-magenta" id="attendance">0%</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <footer class="bg-white">
+        <p class="foot fg-darkOrange">STARKS Copyright &copy; 2014</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title id="pageTitle">STS | Add New Student</title>
+
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+
+
+   <script src="AddNewStudent.js" type="text/javascript"></script> 
+    
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+    <script src="resource/js/metro-tab-control.js" type="text/javascript"></script>
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+
+    <!--custom-->
+    <script src="resource/js/metro-dropdown.js" type="text/javascript"></script>
+    <script src="resource/js/metro-dialog.js" type="text/javascript"></script>
+
+    <script src="resource/js/metro-input-control.js" type="text/javascript"></script>
+
+
+    <script src="resource/js/github.info.js" type="text/javascript"></script>
+
+
+
+
+</head>
+<body class="metro">
+    <header class="bg-black">
+        <h2 class="fg-grayLighter place-left">STS Admin</h2>
+
+        <nav class="margin10 navigation-bar dark place-right">
+            <nav class="navigation-bar-content">
+                <item class="element place-right"><a href="Students.html" class="fg-amber margin10"><i class="icon-user"></i>&nbsp;Students</a></item>
+                <item class="element place-right"><a href="Report.html" class="fg-white margin10"><i class="icon-stats-2"></i>&nbsp;Reports</a></item>
+                
+                <item class="element place-right"><a href="SchedulePage.html" class="fg-white margin10"><i class="icon-clock"></i>&nbsp;Exam Schedules</a></item>
+
+                <item class="element place-right">
+                    <a href="OngoingExams.html" class="fg-white margin10"><i class="icon-film"></i>&nbsp;Ongoing Exams</a>
+                </item>
+
+
+
+            </nav>
+        </nav>
+    </header>
+
+    <div class="clearLarge"></div>
+    <div class="clearLarge"></div>
+    <div class="page">
+
+        <div class="page-region-content">
+            <!-- top-->
+            <div class="bg-grayLighter">
+                <div class="grid">
+                    <div class="row">
+                        <div class="span12">
+                            <h1 class="margin20 topicHead">
+                                <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>Students Page |
+                                <small id="explanation" class="on-right">Add a new candidate to the database</small>
+                            </h1>
+                        </div>
+                        <div class="span2">
+                            <div class=" fg-black margin20">
+                                <a class="dropdown-toggle" href="#">
+                                    <span class="fg-gray">Admin&nbsp;<i class="icon-user"></i></span>
+                                </a>
+                                <ul class="dropdown-menu" data-role="dropdown">
+                                    <li><a href="#">Edit Account</a></li>
+                                    <li><a href="#">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid fluid">
+                <div class="row">
+                    <!--sidebar-->
+                    <div class="span3">
+
+                        <img src="resource/img/logo.jpg" alt="logo" width="300" height="250" />
+                    </div>
+                    <!--Content-->
+
+                    <div class="span6">
+
+                        <form id="form"  method="POST" enctype="multipart/form-data" >
+                        <div class="forms vertical-scroll">
+                            <img src="resource/img/logo.jpg" alt="uploaded" width="150" height="150"/>
+                            <label>Upload Passport:</label>
+                            <div class="input-control">
+                                <input type="file" name="file" id="pic" />
+                            </div>
+                            <label>Student Number:</label>
+                            <div class="input-control text">
+                                <input  type="text" required name="matric" id="studentNo"/>
+                            </div> 
+                            <label>First Name:</label>
+                            <div class="input-control text">
+                                <input type="text" required name="firstName" id="fName"/>
+                            </div>
+                            <label>Last Name:</label>
+                            <div class="input-control text">
+                                <input type="text" required name="lastName" id="lName" />
+                            </div>
+                            <label>Middle Name:</label>
+                            <div class="input-control text">
+                                <input type="text" required name="middleName" id="mName" />
+                            </div>
+                             <label>Email:</label>
+                            <div class="input-control text">
+                                <input type="email"  name="email"  />
+                            </div>
+                               <label>Phone Number:</label>
+                            <div class="input-control text">
+                                <input type="number"  name="mobileNo"  />
+                            </div>
+                                
+                              
+                            <label>Gender:</label>
+                            <select id="gender" required name="gender">
+                                <option value="">-Choose Gender-</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                           
+
+                       <small class="fg-red margin10" id="invalid">Fill All Required Details</small>
+                     
+                       <button class="bg-darkBlue fg-white" type="submit" id="submit" ><i class="icon-new"></i>Add Student</button>
+                        </div> 
+                        </form>
+                    </div>
+                    <!--stats-->
+                    <div class="span3">
+                        <fieldset>
+                            <legend>
+                                Student Stats
+                            </legend>
+                            <div class="listview-outlook">
+                                <a  class="list">
+                                    <div class="list-content" id="totalStudentsClicked">
+                                        <div class="data">
+
+                                            <span class="list-title">Total Number Of Students</span>
+                                            <span class="list-remark fg-red" id="totalStudents">0</span>
+                                        </div>
+                                    </div>
+                                </a>
+
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer class="bg-white">
+        <p class="foot fg-darkOrange">STARKS Copyright &copy; 2014</p>
+    </footer>
+</body>
+</html>

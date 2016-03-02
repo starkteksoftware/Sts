@@ -1,0 +1,152 @@
+﻿body {
+    min-width:1000px
+}
+
+.gaptext {
+ 
+    width:15px;
+    border-width: 0px 0px 2px 0px;
+    border-color:black;
+    border-style:solid;
+   
+}
+
+div.icondiv{
+    width:50px;
+    height:50px;
+    margin:20px;
+}
+
+footer {
+bottom:0px;
+position:fixed;
+min-width:1000px;
+width:100%;
+padding:5px;
+text-align:center;
+z-index:500;
+ 
+}
+
+    footer p.foot {
+    font-size:0.7em;
+    text-align:center;
+   
+    }
+header {
+position:fixed;
+top:0px;
+z-index:501;
+width:100%;
+opacity:0.8;
+box-shadow:rgba(0,0,0,0.2) 0px 5px 5px;
+}
+
+  
+img.logoThumbnail {
+width:30px;
+height:30px
+}
+.clear {
+clear:both;
+height:20px
+}
+
+img.bigimage {
+width:175px;
+height:175px;
+margin-top:10px
+}
+
+.bottomlinks {
+    margin-top:30px;
+    background-color:#333;
+    text-align:center;
+    padding:2px;
+    
+}
+
+.twounpaddedhalves {
+    float:left;
+    width:50%
+}
+
+    .bottomlinks * {
+    font-size:0.7em;
+    margin-left:30px;
+   
+    
+    }
+.bottomlinkswhite {
+    margin-top:30px;
+    background-color:whitesmoke;
+    text-align:center;
+    padding:2px;
+    
+}
+
+.bottomlinkswhite * {
+    font-size:0.7em;
+    margin-left:30px;
+   
+    
+    }
+
+
+.clearLarge {
+clear:both;
+height:50px
+}
+
+div.normalCentral {
+width:50%;
+margin-left:25%;
+
+
+}
+div.vertical-scroll {
+    overflow-y:scroll;
+     max-height:250px
+}
+div.vertical-scrolls {
+    overflow-y:scroll;
+     max-height:250px;
+     width:600px;
+     
+}
+
+div.vertical-scroller{
+       overflow-y:scroll;
+       overflow-x:scroll;
+     max-height:300px;
+     width:780px;
+     
+     
+     
+}
+div.vertical-scrollss{
+     overflow-y:scroll;
+     max-height:350px
+}
+
+
+div.forms
+{
+padding:20px 40px 20px 60px;border:1px #ccc solid;position:relative;margin:0 0 10px 0;background-color:#fdfdfd!important;min-height:100px}
+div.forms:before,div.forms:after{display:table;content:""}
+div.forms:after{clear:both}
+div.forms:before{position:absolute;content:"Fill it";left:-21px;top:21px;color:#999!important;margin:5px 10px;font-family:'Segoe UI Semibold_','Open Sans Bold',Verdana,Arial,Helvetica,sans-serif;font-weight:bold;color:#000;font-size:11pt;line-height:15pt;letter-spacing:.02em;color:rgba(0,0,0,0.6);font-size:10pt;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg)}
+
+h1.topicHead {
+    text-align:center
+}
+.smallCentralWhite {
+border:1px solid #ccc;
+
+}
+    .smallCentral:hover,.smallCentralWhite:hover {
+  border:1px solid blue;
+         }
+
+.cancel-exam {
+}

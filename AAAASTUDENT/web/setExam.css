@@ -1,0 +1,57 @@
+/* 
+    Document   : setExam
+    Created on : Jul 6, 2015, 10:28:07 AM
+    Author     : bola odesile
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.whiteSmokeBg{
+    background-color: whitesmoke;
+}
+.pageFormation{
+    margin: auto;
+    height:325px;
+    width:600px;
+    border: 1px solid gray;
+    
+}
+
+.showBorder
+{
+    border:1px solid black;
+}
+.yellowBackground{
+    background-color: yellow;
+}
+.index_2{
+    z-index: 2;
+}
+.index_3{
+    z-index: 3;
+}
+.setAuto{
+    margin:auto;
+}
+.setQuestion{
+    margin: auto;
+    
+    width:500px;
+    border-top: 2px gray solid;
+   
+}
+
+.textWidth{
+    width: 350px;
+    height: 30px;
+}
+
+.tableSpace{
+    margin-top: 50px;
+    
+    
+}

@@ -1,0 +1,40 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>
+            <form method="post" action="http://localhost:8080/AAAACLIENT/webresources/exam/admin/setQuestions" >
+                <input type="text" name="question"/>
+                <input type="text" name="time"/>
+                <input type="text" name="calculator"/>
+                
+                <input type="submit" value="enter"/>
+                
+            </form>
+            
+        </div>
+      
+            
+        <div>
+           <form method="get" action="http://localhost:8080/AAAACLIENT/webresources/exam/candidate/cancelsession" >
+                <input type="text" name="id"/>
+               
+                
+                <input type="submit" value="enter"/>
+                
+            </form>   
+            
+            <form method="get" action ="http://localhost:8080/AAAACLIENT/webresources/exam/schedule/examination/exams">
+            <input type="submit" value="enter"/>
+            </form>
+        </div>
+        
+    </body>
+</html>

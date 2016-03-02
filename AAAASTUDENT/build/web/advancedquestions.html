@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mex | Exam In Progress...</title>
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+
+
+
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+    <script src="resource/js/metro-countdown.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+            $('#time_counter').countdown({
+                style: {
+                    background: 'bg-teal',
+                    foreground: 'fg-white',
+                    divider:'fg-white'
+                },
+                blink: true,
+           
+               
+                ontick: function (d, h, m, s) {}
+            });
+        });
+    </script>
+      <link href = "AdminStyle.css" rel = "StyleSheet" />  
+      
+    <script src="Dragged.js" type="text/javascript"></script> 
+      
+      
+      
+      
+      
+</head>
+<body class="metro" id="examBody">
+    <div class="page">
+        <!--Page header-->
+        <div class="page-header">
+            <div class="page-header-content">
+                <header class="bg-black padding5" id="studName">
+                    <h2 class="fg-white place-left" id="name" >John Doe | <small>Chemistry 2nd Semester 11th Grade</small></h2>
+                    <img src="resource/img/logo.jpg" class="place-right logoThumbnail margin5" />
+                </header>
+                
+            </div>
+        </div>
+        <div class="clearLarge"></div>
+        <div class="page-region">
+            <div class="page-region-content">
+               
+                        <!--content-->
+                <div class="border-bottom bd-grayLighter">
+                    <div class="padding20">
+                        <button class="bg-darkRed fg-white" id="endExamination" ><i  class="icon-cancel" id="endExam" ></i>&nbsp;End Active Session</button>
+                       
+                        <div id="timer">
+                           0
+                           
+                        </div>
+                    </div>
+
+
+                </div>
+                       
+                   <div>
+                            <div class="border-bottom bd-darkOrange">
+                                <h3 id="questionNumber" class="fg-darkGreen text-center">
+                                    Question<span id="number"> 1</span> 0f <span id="amount">10</span>
+                                </h3>
+                                <div id="table"  class="padding20 text-center">
+                                    
+                                </div>
+                            </div>
+                             <diV class="padding20">
+                                 <img id="image" draggable="true"  ondragstart="drag(event)" src="resource/img/logo.jpg" height="80px" width="80px" />
+                                 <div id="drag1" draggable="true"  ondragstart="drag(event)" style="width:35px;height:25px" class="margin20 bg-amber place-left">BABY</div>
+                             <div id="drag2" draggable="true"  ondragstart="drag(event)" style="width:35px;height:25px" class="margin20 bg-darkGreen place-left">BOO</div>
+                           <div id="drag3" draggable="true"  ondragstart="drag(event)" style="width:35px;height:25px" class="margin20 bg-darkMagenta place-left">HEY</div>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                <h1 class="margin10 place-left">
+                    <div  style="cursor:pointer" class="fg-black"  id="previous" onclick="previous();"><i class="icon-arrow-left-3"></i></div>
+                </h1>
+                        <div class="place-left" id="drawRectangle"  ondrop="drop(event);" ondragover="allowDrop(event);" width="600" height="300"  style="border:1px solid gold;margin-left:150px">
+                            <table  class="table bordered"   >
+                                <tbody id="tabs">
+                                    <tr> <td id="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td id="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                                          <tr><td id="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                                     <tr><td id="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td id="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                                     <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+                         </tbody>
+                            </table>  
+                           
+                        </div>
+              
+                        <h1 class="margin10 place-right">
+                    <div style="cursor:pointer"  class="fg-black" onclick="next();" id="next"><i class="icon-arrow-right-3"></i></div>
+                </h1>
+                <div style="clear:both"></div>
+
+                <div id="pagination" class="margin20 ">
+                                    </div>
+
+                        
+                    </div>
+                </div>
+                      
+                
+            </div>
+       
+        
+    
+</body>
+</html>

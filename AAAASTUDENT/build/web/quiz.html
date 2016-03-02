@@ -1,0 +1,180 @@
+
+
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="t">
+    <title>Mex | Exam In Progress...</title>
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+     <link href="resource/css/calculator.css" type="text/css" rel="stylesheet" />
+   
+
+  <link type="text/css" href="webDesign.css" rel="stylesheet" />
+  
+
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+    
+    <script src="resource/js/metro-dialog.js" type="text/javascript"></script>
+    <script src="resource/js/metro-times.js" type="text/javascript"></script>
+    <script src="resource/js/metro-progressbar.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function () {
+   
+      
+          $('#calculators').click (function () {
+              var str="";
+              function clear(){
+                 str=""; 
+              }
+              
+              function clickedHere(e){
+                  alert(e);
+                  
+                  str+=e;
+                  displayScreen();
+              }
+              
+              function displayScreen(){
+                 document.getElementById("screen").innerHTML = str; 
+              }
+              
+              function clickeds(){
+                  alert("wow");
+                  
+              }
+                
+              $.Dialog({
+                  shadow: true,
+                  overlay: true,
+                  flat: true,
+                  title: 'Schedule Settings',
+                  icon: '<i class="icon-cancel fg-red"></i>',
+                  padding: 10,
+                  content: '   <div> </div><div> <input type="text" id="screen" readonly /> </div>  <div> <div class="keypads"  onclick="clickedHere(1);" >1</div> <div class="keypads" onclick="clickedHere(2);" >2</div><div class="keypads" onclick="clicked(3);" >3</div><div class="keypads" onclick="clicked(4);" >4</div> </div>'
+                  +'<div class="keypads" onclick="clicked(5);"  >5</div> <div class="keypads" onclick="clicked(6);" >6</div><div class="keypads" onclick="clicked(7);" >7</div><div class="keypads" onclick="clicked(8);" >8</div> </div> '
+
+              });
+          });
+      });
+  </script>
+
+    
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+            $('#time_counter').countdown({
+                style: {
+                    background: 'bg-teal',
+                    foreground: 'fg-white',
+                    divider:'fg-white'
+                },
+                blink: true,
+           
+               
+                ontick: function (d, h, m, s) {}
+            });
+        });
+        
+        
+
+    </script>
+      <link href = "AdminStyle.css" rel = "StyleSheet" />  
+      
+        <script src="Index.js" type="text/javascript"></script> 
+      
+      <script src="mainScript.js" type="text/javascript"></script> 
+    
+      <script src="pro.js" type="text/javascript"></script> 
+    
+   
+      
+    
+      
+      
+</head>
+<body class="metro"  id="examBody"  >
+    <div class="page">
+        <!--Page header-->
+        <div class="page-header">
+            <div class="page-header-content">
+                <header class="bg-black padding5" id="studName">
+           <button class="margin15 bg-darkRed fg-white" id="endExamination" ><i  class="icon-cancel" id="endExam" ></i>&nbsp;End Active Session</button>
+                </header>
+                
+            </div>
+        </div>
+        <div class="clearLarge"></div>
+         
+        <div style="margin: auto; clear: both;">                   <div id="time_counter" class=" times" data-style-background="bg-teal" data-style-foreground="fg-yellow" data-role="times" style="font-size:40px; z-index:1"  ></div>
+           </div>
+
+        <div class="page-region">
+            <div class="page-region-content">
+               
+                        <!--content-->
+                <div class="border-bottom bd-grayLighter">
+                    <div class="padding20">
+             
+             <!--          
+                        <div id="timer">
+                           0
+                           
+                        </div>
+                    </div>
+
+                  <!--  <button id="calculator" onclick="calculators();" >Show Calculator</button>-->
+                </div>
+                   <div>
+                            <div class="border-bottom bd-darkOrange">
+                                <h3 id="questionNumber" class="fg-darkGreen text-center">
+                                    Question<span id="number"> 1</span> 0f <span id="amount">10</span>
+                                </h3>
+                                <div id="table" class="padding20 text-center"  ondrop="drop(event);" ondragover="allowDrop(event);"  >
+                                    
+                                </div>
+                            </div>
+                            <div id="answers" class="padding20">
+                                
+                    
+                            </div>
+                       <table style="margin-left:35%;" ><tbody id="tableId"></tbody></table>
+                        </div>
+                <h1 class="margin10 place-left">
+                    <div  style="cursor:pointer" class="fg-black"  id="previous" onclick="previous();"><i class="icon-arrow-left-3"></i></div>
+                </h1>
+                       
+                <h1 class="margin10 place-right">
+                    <div style="cursor:pointer"  class="fg-black" onclick="next();" id="next"><i class="icon-arrow-right-3"></i></div>
+                </h1>
+                <div style="margin:auto; clear:both">
+                    
+                 <div id="pro" class="progress-bar"  data-role="progress-bar" data-value="0" data-color="bg-pink"></div>
+                    
+                </div>
+
+                    
+                    
+                    
+                <div id="pagination" class="margin20 ">
+                                    </div>
+
+                    <button id="increase">start</button>
+                    
+                    </div>
+                </div>
+                      
+                
+            </div>
+       
+        
+    
+</body>
+</html>

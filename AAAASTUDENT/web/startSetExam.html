@@ -1,0 +1,50 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+
+
+
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+    <link type="text/css" href="setExam.css" rel="stylesheet" />
+    <script src="setExamScript.js" type="text/javascript"></script>
+    
+    
+    </head>
+    <body class="metro">
+        <div class="clearLarge"><form style="display: none;" id="form" action="ExamFieldWeb.html"></form></div>
+         <div class="clearLarge"></div>
+         <div ><div class="pageFormation whiteSmokeBg"><table class="tableSpace  whiteSmokeBg"><tbody class=" whiteSmokeBg" >
+                         <tr  ><td class="tableSpace"><label>Assessment:</label></td><td><input required id="assessment" placeholder="Please Enter the name of the assessment" class="textWidth" type="text"/></td></tr>
+                         <tr ><td> <div class="clear"></div></td><td></td></tr>
+                              
+                                   
+                         <tr  ><td>Question Type:</td><td><select id="type" required class="textWidth"><option value="S.R">Single Response</option> <option value="M.R">Multiple Choice</option> <option value="T.F">True or false</option>  <option value="B.G">Blank Gaps</option>   <option value="F.B">Fill In The Blanks</option> <option value="E.S">Essay</option> <option value="L.S">Linkert Scale</option> <option value="S.M">Single Matching</option> <option value="M.X">Multiple Matching</option> <option value="S.D">Single Drag</option> <option value="M.D">Multiple Drag</option> <option value="P.T">Personality Test</option> <option value="T.T">Timer Test </option>  <option value="A.T">Advanced Test </option>   </select></td></tr>
+                             <tr ><td> <div class="clear"></div></td><td></td></tr>
+                      
+                             <tr  ><td>Option count:</td><td><select id="option" required class="textWidth"><option value="2">2</option> <option value="3">3</option> <option value="4">4</option></select></td></tr>
+                             <tr ><td> <div class="clear"></div></td><td></td></tr>
+                      
+                             
+                             <tr ><td><label>Author:</label></td><td><input id="author" required placeholder="Enter author name" class="textWidth" type="text"/></td></tr>
+                             <tr><td> <div class="clear"></div></td><td></td></tr>
+                      
+                            <tr ><td><label style="color:red; " id="error"></label></td> <td><button id="submit" class="button bg-darkBlue fg-white">Enter</button></td></tr>
+                            <tr><td> <div class="clear"></div></td><td></td></tr>
+                      
+                     </tbody></table></div></div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+            alert("whop");
+          var video =  document.querySelector('#live');
+          var options = {"video":true};
+          
+          
+          navigator.webkitGetUserMedia(options,function(stream){
+              video.src = webkitURL.createObjectURL(stream);
+              alert("working");
+              
+          },function (err){
+              console.log("nnb");
+          })
+            </script>
+    </head>
+    <body>
+        <div><video id="live" width="320" height="240" autoplay="autoplay" style="display:inline"></video></div>
+    </body>
+</html>

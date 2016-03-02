@@ -1,0 +1,290 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link href="resource/css/metro-bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/metro-bootstrap-responsive.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/custom.css" type="text/css" rel="stylesheet" />
+    <link href="resource/css/prettify.css" type="text/css" rel="stylesheet" />
+
+   
+    
+    
+    <script src="resource/js/jquery.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.widget.min.js" type="text/javascript"></script>
+    <script src="resource/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="resource/js/metro-hint.js" type="text/javascript"></script>
+    <script src="resource/js/metro/metro-loader.js" type="text/javascript"></script>
+    
+    <script src="resource/js/metro-input-control.js" type="text/javascript"></script>
+    
+    <script src="resource/js/metro-dialog.js" type="text/javascript"></script>
+     
+    <script src="resource/js/jquery/jquery.min.js" type="text/javascript"></script>
+       <script src="resource/js/metro-accordion.js" type="text/javascript"></script>
+    <!-- Metro UI CSS JavaScript plugins -->
+ 
+    <!-- Local JavaScript -->
+    <script src="resource/js/docs.js"></script>
+    <script src="resource/js/github.info.js"></script>
+<script src="resource/js/metro-dropdown.js" type="text/javascript"></script>
+<script src="resource/js/metro-carousel.js" type="text/javascript"></script>
+<script src="preview.js" type="text/javascript"></script>
+
+<script src="ExamFiledWeb.js" type="text/javascript"></script>
+<script src="ExamIconWeb.js" type="text/javascript"></script>
+<!-- preview script --->
+
+
+    <link type="text/css" href="setExam.css" rel="stylesheet" />
+        <link type="text/css" href="webDesign.css" rel="stylesheet" />
+
+    </head>
+    <body class="metro ">
+         
+       <header class="bg-black">     <nav class="horizontal-menu compact   bg-gray">
+    <ul>
+     <li><a class="dropdown-toggle "  href="#">Project</a>
+     <ul class="dropdown-menu"  data-role="dropdown" >
+         <li><a href="#"><i class="icon-download fg-yellow"></i>Import</a></li>
+<li><a href="#"><i class="icon-upload fg-green"></i>Export</a></li>
+
+</ul>
+    </li>
+    <li><a class="dropdown-toggle"  href="#">Assessment</a>
+     <ul class="dropdown-menu" data-role="dropdown" >
+<li><a href="#">New Assessment</a></li>
+<li><a href="#">Save Assessment</a></li>
+<li><a href="#">Publish</a></li>
+<li><a href="#">Delete</a></li>
+</ul>
+    </li>
+    <li><a class="dropdown-toggle" href="#"   >Profile</a></li>
+    <li><a class="dropdown-toggle" href="#">Support</a></li>
+       <li class="element place-right"><a class="dropdown-toggle element " href="#"   ><i class="icon-user-2 fg-red "></i></a></li>
+        <li class="element place-right"><a class="dropdown-toggle element " href="#"   ><i class="icon-mail-2 fg-green "></i></a></li>
+         <li class="element place-right"><a class="dropdown-toggle element " href="#"   ><i class="icon-award-stroke fg-cobalt "></i></a></li>
+    
+    </ul>
+         
+                
+    </nav>
+       </header>
+        <div class="clearLarge"></div>
+         <form id="forms" method="POST" style="display:none"><input type="text"  name="subject" id="subject"/> <input type="text"  name="author" id="author"/><input type="text"  name="question" id="question"/><input type="text"  name="answer" id="answer"/></form>
+    
+         <div class="clearLarge"></div>
+        <div class="setQuestion">
+            <div style=" width:100%; height:10px" class="index_2 place-left"><span> <a class="controls fg-black left"><i class="icon-arrow-left-3"></i></a></span>
+                <span class="place-right"><a class="controls fg-black right"><i class="icon-arrow-right-3 "></i></a></span></div>
+
+            <table class="table" ><tbody class="hovered">
+                    <tr class=""><td><i class="icon-paragraph-left"></i></td><td><i class="icon-paragraph-right"></i></td><td><i class="icon-paragraph-center"></i></td><td><i class="icon-paragraph-justify"></i></td><td><i class=" icon-font"></i></td></tr>
+                    
+                    <tr class=""><td><i class="icon-download-2"></i></td><td><i class="icon-upload"></i></td><td><i class="icon-type"></i></td><td ><i id="save" onClick="send();"  class="icon-floppy"></i></td><td><i class="icon-calculate"></i></td></tr>
+                </tbody></table>
+            
+        </div>
+        <div class="setQuestion "></div>
+        <div class="index_2"> 
+             
+   
+            
+            
+            
+            
+            <div class="accordion" data-role="accordion">
+<div class="accordion-frame">
+<a href="#" class="heading bg-grayLighter fg-orange" style="text-align: center">Multimedia </a>
+<div class="content">
+    <input type="file" id="fileImage" /> <button id="getImage">Post</button>
+    <textarea id="imageQuestion" rows="1" cols="24"></textarea>
+    <span>column</span> <input type="text" id="row" style="width: 25px" /> <span>row</span> <input id="column" type="text" style="width: 25px" /> <button id="applyRow">apply</button>
+     <div id="multimedia" class="questionSetter">
+         
+         
+         <table id="arranger" class="tableSet">
+             <tbody id="tableBody">
+            
+             </tbody>
+         </table>
+        
+     </div>
+    <div style="margin:auto; text-align: center"> <span class="" style="margin: auto; border: 1px solid gray" id="sendQuestion">Submit</span> </div>
+</div>
+</div>
+ 
+<div class="accordion-frame">
+<a href="#" class=" heading bg-grayLighter  fg-cobalt" style="text-align: center"><span >Preview</span></a>
+<div class="content" style="background-color: gray">
+      <div class="middle"><span><button>Save</button><button>Discard</button></span></div>
+    <div id="questions" class="questionSetter"></div>
+  
+    
+</div>
+</div>
+<div class="accordion-frame">
+<a href="#" class="heading bg-grayLighter fg-amber" style="text-align: center" >Slide View</a>
+<div class="content" id="trial">
+    
+    <div id="designer" class="carousel " style="height:250px"  data-role="carousel"  >
+       <div  class="slide designerDiv" id="t1" >
+         
+    </div>
+          <div class="slide designerDiv" id="t2">
+    
+    </div>
+           <div class="slide designerDiv" id="t3">
+         
+    </div>
+           <div class="slide designerDiv" id="t4">
+         
+    </div>
+           <div class="slide designerDiv" id="t5">
+         
+    </div>
+           <div class="slide designerDiv" id="t6">
+         
+    </div>
+    
+           <div class="slide designerDiv" id="t7">
+         
+    </div>
+           <div class="slide" id="t8">
+         
+    </div>
+           <div class="slide" id="t9">
+         
+    </div>
+           <div class="slide" id="t10">
+         
+    </div>
+           <div class="slide" id="t11">
+         
+    </div>
+           <div class="slide" id="t12">
+         
+    </div>
+           <div class="slide" id="t13">
+         
+    </div>
+           <div class="slide" id="t14">
+         
+    </div>
+        <a class="controls left"><i class="icon-arrow-left-3"></i></a> <a class="controls right"><i class="icon-arrow-right-3"></i></a>
+    </div>
+    
+</div>
+</div>
+</div>
+            
+            <button class="image-button bg-white fg-black dropdown-toggle">
+        Questions &nbsp;&nbsp; &nbsp;&nbsp;
+        <img src="images/book5.jpg" class="bg-black">
+    </button>
+       <ul class="dropdown-menu" data-role="dropdown" data-show="hover" id="arrangeQ"> 
+          <li>
+<a class="dropdown-toggle"  ><i class="icon-folder fg-yellow"></i>English</a>
+<ul class="dropdown-menu " data-role="dropdown" data-show="hover" >
+<li><a href="#"><i class="icon-arrow-right fg-cobalt"></i>Sublink 1</a></li>
+<li><a href="#"><i class="icon-checkmark fg-green"></i>Sublink 2</a></li>
+<li><a href="#"><i class="icon-cancel fg-red"></i>Sublink 3</a></li>
+<li class="divider"></li>
+<li><a href="#"><i class="icon-arrow-right fg-cobalt"></i>Sublink 3</a></li>
+<li><a href="#"><i class="icon-checkmark fg-green"></i>Sublink 3</a></li>
+<li><a href="#"><i class="icon-cancel fg-red"></i>Sublink 3</a></li>
+</ul>
+</li> 
+           
+           <li>
+<a class="dropdown-toggle"  ><i class="icon-folder fg-yellow"></i>Chemistry</a>
+<ul class="dropdown-menu " data-role="dropdown" >
+
+    <li><a href="#"><i class="icon-arrow-right fg-cobalt"></i>Sublink 1</a></li>
+<li><a href="#"><i class="icon-checkmark fg-green"></i>Sublink 2</a></li>
+<li><a href="#"><i class="icon-cancel fg-red"></i>Sublink 3</a></li>
+<li class="divider"></li>
+<li><a href="#"><i class="icon-arrow-right fg-cobalt"></i>Sublink 3</a></li>
+<li><a href="#"><i class="icon-checkmark fg-green"></i>Sublink 3</a></li>
+<li><a href="#"><i class="icon-cancel fg-red"></i>Sublink 3</a></li>
+</ul>
+</li><li>
+<a class="dropdown-toggle"  ><i class="icon-folder fg-yellow"></i>Mathematics</a>
+<ul class="dropdown-menu " data-role="dropdown" >
+<li><a href="#"><i class="icon-arrow-right fg-cobalt"></i>Sublink 1</a></li>
+<li><a href="#"><i class="icon-checkmark fg-green"></i>Sublink 2</a></li>
+<li><a href="#"><i class="icon-cancel fg-red"></i>Sublink 3</a></li>
+<li class="divider"></li>
+<li><a href="#"><i class="icon-arrow-right fg-cobalt"></i>Sublink 3</a></li>
+<li><a href="#"><i class="icon-checkmark fg-green"></i>Sublink 3</a></li>
+<li><a href="#"><i class="icon-cancel fg-red"></i>Sublink 3</a></li>
+</ul>
+</li>
+    </ul>
+   
+     
+        </div>
+        
+        <div class="index_3" style="float:right">
+        <nav class="sidebar">
+<ul>
+    
+ <li class="title bg-white fg-darkIndigo " id="assessment"></li>
+<li><a href="#" id="tQuestions"><span>Total Questions:</span><span id="tCount" class="fg-green">10</span></a></li>
+<li><a href="#"><span>View Questions:</span><span class="fg-red">1</span></a></li>
+<li><a href="#"><span>Number</span><span id="questionCount">1</span></a></li>
+
+<li></ul>
+            </nav>
+        </div>
+        <div class="pageFormation  "  style="border:none"> <input type="file" id="fileInput" /><div style="display:none" id="questArrange"></div>   <textarea  id="questView" class="pageFormation" ></textarea>
+         
+          <div class="clear"></div>
+          <table class="setAuto whiteSmokeBg  ">
+              <tbody class="whiteSmokeBg" id="optionSetter">
+                  <tr>
+                      <td><input type="checkbox" data-transform="input-control" data-transform-type="switch" /></td>  <td><textarea rows="1" cols="40"></textarea></td>
+                  </tr>
+                   <tr>
+                
+                       <td><input type="checkbox" data-transform="input-control" data-transform-type="switch" /></td>  <td><textarea rows="1" cols="40"></textarea></td>
+                  </tr>
+                   <tr>
+                      <td><input type="checkbox" data-transform="input-control" data-transform-type="switch" /></td>  <td><textarea rows="1" cols="40"></textarea></td>
+                  </tr>
+              </tbody>
+                   <tr><td></td><td><button  id="enterQuestion" class="button bg-cobalt">Select</button></td></tr>
+             
+          </table>
+        
+            <div class="clearLarge"></div>
+        
+            
+           <!--  
+            <div class="accordion" data-role="accordion">
+<div class="accordion-frame">
+<a href="#" class="heading bg-gray fg-dark">Frame heading</a>
+<div class="content">...</div>
+</div>
+ 
+<div class="accordion-frame">
+<a href="#" class=" heading bg-gray fg-dark">Frame heading</a>
+<div class="content">...</div>
+</div>
+<div class="accordion-frame">
+<a href="#" class="heading bg-gray fg-dark">Frame heading</a>
+<div class="content">...</div>
+</div>
+</div>
+       
+   -->
+  
+    </div>
+        <footer style="border:gray 1px dashed" class="fg-red">starks copyright</footer>
+     </body>
+</html>

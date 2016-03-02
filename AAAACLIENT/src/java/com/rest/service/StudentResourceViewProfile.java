@@ -33,7 +33,7 @@ public class StudentResourceViewProfile {
              javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
              connection = ds.getConnection();
              getBioData = connection.prepareStatement("SELECT lastname, firstname, email, comment from candidatedata where matric= ?");
-             getResult = connection.prepareStatement("SELECT * from results where matric =?");
+             getResult = connection.prepareStatement("SELECT * from results where matric =? ORDER BY dateyear DESC");
              getRanking = connection.prepareStatement("SELECT matric from results where courseId = ? ORDER BY score DESC, time ASC  ");
              
              
@@ -76,7 +76,7 @@ public class StudentResourceViewProfile {
                     while(results.next()){
                         count++;
                         if(results.getString("matric").equals(matric)){
-                            appender.append("#").append(count);
+                            appender.append("#").append(k).append("*").append(count);
                             break;
                         }
                     }

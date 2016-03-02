@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -9,21 +8,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentallela Alela! | </title>
+    <title>Sts! | </title>
+   <style>
+        
+     .overlay,
+.overlay-wrapper > .overlay,
+ .loading-img,
+.overlay-wrapper > .loading-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.overlay,
+.overlay-wrapper .overlay {
+  z-index: 50;
+ 
+  border-radius: 3px;
+}
+.overlay > .fa,
+.overlay-wrapper .overlay > .fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+  color: #000;
+  font-size: 30px;
+}
+.overlay.dark,
+.overlay-wrapper .overlay.dark {
+ 
+}
 
+ .ov {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+      }
+      .overs {
+        background: transparent !important;
+      }
+    .over{
+       background-color: #000;
+    filter: alpha(opacity=50);
+    opacity: .5;}
+  </style>
     <!-- Bootstrap core CSS -->
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="theme/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="theme/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="theme/css/animate.min.css" rel="stylesheet">
 
     <!-- Custom styling plus plugins -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/icheck/flat/green.css" rel="stylesheet">
+    <link href="theme/css/custom.css" rel="stylesheet">
+    <link href="theme/css/icheck/flat/green.css" rel="stylesheet">
+    <style>
+        .disabled{
+            cursor: not-allowed;
+            
+        } 
+        .iradio_flat-green {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url('green.png'); 
+    border: none;
+    cursor: pointer;
+}
 
-
-    <script src="js/jquery.min.js"></script>
+    </style>
+ 
+    <script src="theme/js/jquery.min.js"></script>
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -36,6 +102,7 @@
         <![endif]-->
 
 </head>
+
 
 
 <body class="nav-md">
@@ -56,11 +123,11 @@
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                            <img id="fullImage" src="images/img.jpg" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>Anthony Fernando</h2>
+                            <h2 id="name"></h2>
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -68,7 +135,7 @@
                     <br />
 
                     <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
                             <h3>General</h3>
@@ -83,101 +150,160 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                               <li><a><i class="fa fa-users"></i> Candidates <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="form.html">General Form</a>
-                                        </li>
-                                        <li><a href="form_advanced.html">Advanced Components</a>
-                                        </li>
-                                        <li><a href="form_validation.html">Form Validation</a>
-                                        </li>
-                                        <li><a href="form_wizards.html">Form Wizard</a>
-                                        </li>
-                                        <li><a href="form_upload.html">Form Upload</a>
-                                        </li>
-                                        <li><a href="form_buttons.html">Form Buttons</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="general_elements.html">General Elements</a>
-                                        </li>
-                                        <li><a href="media_gallery.html">Media Gallery</a>
-                                        </li>
-                                        <li><a href="typography.html">Typography</a>
-                                        </li>
-                                        <li><a href="icons.html">Icons</a>
-                                        </li>
-                                        <li><a href="glyphicons.html">Glyphicons</a>
-                                        </li>
-                                        <li><a href="widgets.html">Widgets</a>
-                                        </li>
-                                        <li><a href="invoice.html">Invoice</a>
-                                        </li>
-                                        <li><a href="inbox.html">Inbox</a>
-                                        </li>
-                                        <li><a href="calender.html">Calender</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="tables.html">Tables</a>
-                                        </li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="chartjs.html">Chart JS</a>
-                                        </li>
-                                        <li><a href="chartjs2.html">Chart JS2</a>
-                                        </li>
-                                        <li><a href="morisjs.html">Moris JS</a>
-                                        </li>
-                                        <li><a href="echarts.html">ECharts </a>
-                                        </li>
-                                        <li><a href="other_charts.html">Other Charts </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="menu_section">
-                            <h3>Live On</h3>
-                            <ul class="nav side-menu">
-                                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="e_commerce.html">E-commerce</a>
-                                        </li>
-                                        <li><a href="projects.html">Projects</a>
-                                        </li>
-                                        <li><a href="project_detail.html">Project Detail</a>
-                                        </li>
-                                        <li><a href="contacts.html">Contacts</a>
-                                        </li>
-                                        <li><a href="profile.html">Profile</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="page_404.html">404 Error</a>
-                                        </li>
-                                        <li><a href="page_500.html">500 Error</a>
-                                        </li>
-                                        <li><a href="plain_page.html">Plain Page</a>
-                                        </li>
-                                        <li><a href="login.html">Login Page</a>
-                                        </li>
-                                        <li><a href="pricing_tables.html">Pricing Tables</a>
-                                        </li>
+                                        <li><a id="studReg">Register Candidate</a>
+                                            <div class="modal fade bs-example-modal-lg" id="studR" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
 
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Register Candidate for exam</h4>
+                                            </div>
+                                            <div id="reg_exam"  class="modal-body">
+                                             </div>
+                                            <div style="" class="">
+                                             <div class="btn-group" >
+                                            
+                                            <div class="btn-group" id="regPg">
+                                               
+                                            </div>
+                                        </div>
+                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                            </div>
+                                        </li>
+                                         <li><a id="unRegCan">Unregister Candidate</a>
+                                        <div class="modal fade bs-example-modal-lg" id="unregR" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Unregister Candidate for exam</h4>
+                                            </div>
+                                            <div id="unregister_can" class="modal-body">
+                                                
+                                             </div>
+                                             <div style="" class="">
+                                             <div class="btn-group" >
+                                            
+                                            <div class="btn-group" id="unregPg">
+                                              
+                                            </div>
+                                        </div>
+                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                            
+                                        </div>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
+                                <li><a><i class="fa fa-graduation-cap"></i> Exam <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a id="startExam" >Start Exam</a>
+                                             <div id="examSt" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel2">Start Exam</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                
+                                         <div class="form-group">
+                                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" readonly="" id="duration_time" placeholder="Duration" required="required" class="form-control has-feedback-left">
+                                                 <span class="fa fa-clock-o form-control-feedback left" aria-hidden="true"></span>
+                                            </div>
+                                              
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" readonly=""  id="start_time"  class="form-control col-md-7 col-xs-12"  placeholder="Start time">
+                                            <span class="fa fa-clock-o form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                            <input type="text"  readonly="" class="form-control has-feedback-left" id="candidates_time" placeholder="Candidates">
+                                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                            <input readonly="" type="text" class="form-control" id="time_time" placeholder="Time">
+                                            <span class="fa fa-clock-o form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+                                             <button class="btn btn-success form-control label">Start Exam</button>
+                                                </div>
+                                             </div>
+                                            <div class="modal-footer">
+                                               </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                        </li>
+                                        
+                                          <li><a id="edExam" >Edit Exam</a>
+                                               <div id="eExam" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel2">Edit Exam</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                              
+                                        </li>
+                                           <li><a id="stopExam" >Stop Exam</a>
+                                               <div id="sExam" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel2">Cancel Exam</h4>
+                                            </div>
+                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Cancel Exam</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -216,7 +342,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
+                                    <img id="smallImage" src="images/img.jpg" alt=""><span id="pname"></span>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -369,8 +495,8 @@
                                             <!-- end of image cropping -->
                                             <div id="crop-avatar">
                                                 <!-- Current avatar -->
-                                                <div class="avatar-view" title="Change the avatar">
-                                                    <img src="images/picture.jpg" alt="Avatar">
+                                                <div class="avatar-view " title="Change the avatar">
+                                                    <img id="proPic"  src="images/picture.jpg" alt="Avatar">
                                                 </div>
 
                                                 <!-- Cropping modal -->
@@ -441,19 +567,19 @@
                                             <!-- end of image cropping -->
 
                                         </div>
-                                        <h3>Samuel Doe</h3>
+                                        <h3 id="candidateId">user</h3>
 
                                         <ul class="list-unstyled user_data">
-                                            <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                                            <li><i class="fa fa-envelope user-profile-icon"></i> <span id="candidateEmail"></span>
                                             </li>
 
                                             <li>
-                                                <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                                                <i class="fa fa-briefcase user-profile-icon"></i> <span id="candidateStatus"></span>
                                             </li>
 
                                             <li class="m-top-xs">
                                                 <i class="fa fa-external-link user-profile-icon"></i>
-                                                <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                                                <a href="http://www.google.com" target="_blank">www.usersite.com</a>
                                             </li>
                                         </ul>
 
@@ -461,8 +587,8 @@
                                         <br />
 
                                         <!-- start skills -->
-                                        <h4>Skills</h4>
-                                        <ul class="list-unstyled user_data">
+                                        <h4>Recent Performance</h4>
+                                        <ul id="performance" class="list-unstyled user_data">
                                             <li>
                                                 <p>Web Applications</p>
                                                 <div class="progress progress_sm">
@@ -512,18 +638,18 @@
                                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                                 <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
                                                 </li>
-                                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
+                                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Ranking</a>
                                                 </li>
-                                                <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+                                                <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Overview</a>
                                                 </li>
                                             </ul>
                                             <div id="myTabContent" class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                                                     <!-- start recent activity -->
-                                                    <ul class="messages">
+                                                    <ul id="recentActivitiy" class="messages">
                                                         <li>
-                                                            <img src="images/img.jpg" class="avatar" alt="Avatar">
+                                                             <img src="images/img.jpg" class="avatar" alt="Avatar">
                                                             <div class="message_date">
                                                                 <h3 class="date text-info">24</h3>
                                                                 <p class="month">May</p>
@@ -598,13 +724,13 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>Project Name</th>
-                                                                <th>Client Company</th>
-                                                                <th class="hidden-phone">Hours Spent</th>
+                                                                <th>Course</th>
+                                                                <th>Rank</th>
+                                                                <th class="hidden-phone">Score</th>
                                                                 <th>Contribution</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody id="ranks">
                                                             <tr>
                                                                 <td>1</td>
                                                                 <td>New Company Takeover Review</td>
@@ -655,7 +781,23 @@
 
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                                                    <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk </p>
+                                                                  <div class="col-md-10">
+                                            <div class="row" style="text-align: center;">
+                                                <div class="col-md-4">
+                                                    <canvas id="canvas1i" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
+                                                    <h4 style="margin:0">Attendance rate</h4>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <canvas id="canvas1i2" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
+                                                    <h4 style="margin:0">Pass rate</h4>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <canvas id="canvas1i3" height="110" width="115" style="margin: 5px 10px 10px 0"></canvas>
+                                                     <h4 style="margin:0">Completion rate</h4>
+                                                </div>
+                                            </div>
+                                        </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -690,84 +832,32 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="theme/js/bootstrap.min.js"></script>
 
     <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
+    <script src="theme/js/chartjs/chart.min.js"></script>
     <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="theme/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="theme/js/nicescroll/jquery.nicescroll.min.js"></script>
     <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
+    <script src="theme/js/icheck/icheck.min.js"></script>
 
-    <script src="js/custom.js"></script>
+    <script src="theme/js/custom.js"></script>
 
     <!-- image cropping -->
-    <script src="js/cropping/cropper.min.js"></script>
-    <script src="js/cropping/main.js"></script>
+    <script src="theme/js/cropping/cropper.min.js"></script>
+    <script src="theme/js/cropping/main.js"></script>
 
     
     <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="theme/js/moment.min.js"></script>
+    <script type="text/javascript" src="theme/js/datepicker/daterangepicker.js"></script>
     <!-- moris js -->
-    <script src="js/moris/raphael-min.js"></script>
-    <script src="js/moris/morris.js"></script>
+    <script src="theme/js/moris/raphael-min.js"></script>
+    <script src="jscustom/ViewStudentProfile.js"></script>
+    <script src="theme/js/moris/morris.js"></script>
     <script>
-        $(function () {
-            var day_data = [
-                {
-                    "period": "Jan",
-                    "Hours worked": 80
-                },
-                {
-                    "period": "Feb",
-                    "Hours worked": 125
-                },
-                {
-                    "period": "Mar",
-                    "Hours worked": 176
-                },
-                {
-                    "period": "Apr",
-                    "Hours worked": 224
-                },
-                {
-                    "period": "May",
-                    "Hours worked": 265
-                },
-                {
-                    "period": "Jun",
-                    "Hours worked": 314
-                },
-                {
-                    "period": "Jul",
-                    "Hours worked": 347
-                },
-                {
-                    "period": "Aug",
-                    "Hours worked": 287
-                },
-                {
-                    "period": "Sep",
-                    "Hours worked": 240
-                },
-                {
-                    "period": "Oct",
-                    "Hours worked": 211
-                }
-    ];
-            Morris.Bar({
-                element: 'graph_bar',
-                data: day_data,
-                xkey: 'period',
-                hideHover: 'auto',
-                barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-                ykeys: ['Hours worked', 'sorned'],
-                labels: ['Hours worked', 'SORN'],
-                xLabelAngle: 60
-            });
-        });
+       
     </script>
     <!-- datepicker -->
     <script type="text/javascript">

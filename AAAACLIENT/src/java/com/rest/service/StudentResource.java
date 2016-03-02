@@ -249,6 +249,11 @@ public class StudentResource {
              return  new Gson().toJson(returnExamData.queryData(subjects));
              
          }
+         
+         if(status == 5){
+             StudentResourceViewProfile getProfile = new StudentResourceViewProfile();
+             return new Gson().toJson(getProfile.queryData(matric));
+         }
 
 
 

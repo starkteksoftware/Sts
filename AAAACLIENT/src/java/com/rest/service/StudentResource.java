@@ -195,46 +195,6 @@ public class StudentResource {
            
          }
 
-/*
-          String value = "false";
-          System.err.println("this is it "+loggedIn.size());
-
-
-
-        if( Exam.startedStudents.containsKey(matric) ){
-            String val =Exam.registeredStudents.get(matric);
-         value = "*"+val;
-
-            System.out.println("these ist the value"+value);
-        loggedIn.put(matric, "student");
-        Exam.startedStudents.remove(matric);
-
-         return new Gson().toJson(value);
-
-
-         }
-
-        if (  loggedIn.containsKey(matric)) {
-           value = "session active";
-
-
-           return new Gson().toJson(value);
-
-         }
-
-           if(Exam.registeredStudents.containsKey(matric)){
-             value = Exam.registeredStudents.get(matric);
-            loggedIn.put(matric, "student");
-              return new Gson().toJson(value);
-         }
-
-
-
-        System.err.println("this is the final value "+value);
-
-        return new Gson().toJson(value);
-
-*/
 
  return "";
  

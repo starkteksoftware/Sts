@@ -5,6 +5,7 @@
  */
 package com.rest.service;
 
+import static com.rest.service.Exam.loggedIn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class StudentResourceResult {
     PreparedStatement insertResult = null;
     PreparedStatement getRank = null;
     PreparedStatement getOverallRank = null;
+    PreparedStatement removeCourse = null;
     
     
      public String postResult(String id,String courseId,String attempt,String time,String score,String type,boolean complete) throws ArrayIndexOutOfBoundsException{
@@ -37,6 +39,8 @@ public class StudentResourceResult {
         insertResult = connection.prepareStatement("INSERT INTO results (matric,courseid,attempt,time,score,type,primaryKey,complete,yearDate,dateYear) VALUES (?,?,?,?,?,?,?,?,?,CURDATE())");
         getRank = connection.prepareStatement("SELECT * from results WHERE courseId =? AND type =?");
         getOverallRank = connection.prepareStatement("SELECT * from results WHERE courseId LIKE ? AND type=? ");
+        removeCourse = connection.prepareStatement("DELETE from examstudenttable where matricExam=? ");
+       
         insertResult.setString(1, id);
         insertResult.setString(2, courseId);
         insertResult.setString(3, attempt);
@@ -69,7 +73,10 @@ public class StudentResourceResult {
                     }
                  }
         
-        
+       removeCourse.setString(1, id+"***"+courseId);
+       removeCourse.executeUpdate();
+       RemoveId.removeId(id, loggedIn,Exam.registeredCourses,courseId);
+       
        
        String rankString ;
        rankString =":"+  StudentResourceSorterMethod.sortMaps(getRankMap, id, type);

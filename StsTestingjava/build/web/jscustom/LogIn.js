@@ -245,7 +245,7 @@ function parseLog( asyncRequest )
  var data = JSON.parse(asyncRequest.responseText);
  
     //    alert(data);
-        
+        $("#next").hide();
  
 
 if(data == "true"){

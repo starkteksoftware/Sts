@@ -33,8 +33,11 @@ function parseValue(){
  
  
  
-  if(data == null)
+     if(data.indexOf("null") !== -1){
+         alert("Please contact administrator");
     window.location.assign("candidateLog.html");
+    
+     }
 
            $("#name").html(data.split("#")[1].split(",")[0]+" "+data.split("#")[1].split(",")[1]);
            $("#pName").html(data.split("#")[1].split(",")[0]+" "+data.split("#")[1].split(",")[1]);
@@ -61,13 +64,13 @@ function parseValue(){
             })
             
             $("#startNewTest").click(function (){
-                window.location.assign("SectionPage.html#startExamination");
+                window.location.assign("SectionPage.html");
                 
-            })
+            });
              $("#startNewTests").click(function (){
-                window.location.assign("candidateLog.html");
+                $("#viewP").trigger("click");
                 
-            })
+            });
             
             document.getElementById("viewP").href = "ViewStudentProfile.html?matric="+localStorage.getItem("user");
             
@@ -172,6 +175,7 @@ function parseLog( asyncRequest )
  var data = JSON.parse(asyncRequest.responseText);
  
        //var str = data;
+       $("#nextload").hide("slow");
        
        if(data == "Server not started"){
            alert("Server not started, please contact administrator");
@@ -253,7 +257,7 @@ function parseLog( asyncRequest )
          join+="<td>"+split[i]+"</td>"; 
        }
    
-          join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' ></i> </a> "+"</td>"; 
+          join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> "+"</td>"; 
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
@@ -350,7 +354,7 @@ function parseLog( asyncRequest )
          join+="<td>"+split[i]+"</td>"; 
        }
      
-           join+="<td> <a href='#startExamination'  ><i class='fa fa-key' id='"+split[0]+"' ></i> </a> "+"</td>"; 
+           join+="<td> <a href='#startExamination'  ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> "+"</td>"; 
       
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
@@ -1341,7 +1345,7 @@ function parseData( asyncRequest ){
   
  
   var time = new Number(data.questionTime);
-  var timer = setInterval(showRemaining,1000);
+  
   var click = true;
   var minutes;
    var hour;
@@ -1459,6 +1463,7 @@ var secId = document.getElementById("seconds");
     
  
  }
+ var timer = setInterval(showRemaining,1000);
  }
  
 }

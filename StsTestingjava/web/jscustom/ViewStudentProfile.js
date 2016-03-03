@@ -83,6 +83,8 @@ function getReport (matric){
  {
  // convert the JSON string to an Object
  var data = JSON.parse(asyncRequest.responseText);
+ $("#nextload").hide("slow");
+ 
  //alert(data);
  
             var sendData = data.split("***#");

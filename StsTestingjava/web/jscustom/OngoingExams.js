@@ -984,7 +984,7 @@ $("#next").hide("slow");
          join+="<td>"+split[i]+"</td>"; 
        }
    
-         join+="<td> <a href='' ><i class='fa fa-user'></i> </a> "+"</td>"; 
+         join+="<td> <a href='ViewStudentProfile.html?matric='"+split[0]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
@@ -1074,7 +1074,7 @@ $("#next").hide("slow");
          join+="<td>"+split[i]+"</td>"; 
        }
    
-          join+="<td> <a href='' ><i class='fa fa-user'></i> </a> "+"</td>"; 
+          join+="<td> <a href='ViewStudentProfile.html?matric='"+split[0]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
       
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
@@ -2126,7 +2126,7 @@ function parseData( asyncRequest ){
  */
  
      
-     alert(examination);
+   
      
  }
  
@@ -2643,10 +2643,11 @@ function clicked(e){
     
    if(e.target.tagName === "I"){
       
-       
+       if(e.target.className === "fa fa-arrow-right"){
        var second = e.target.id;
         localStorage.setItem("ExamName",second);
         window.location.assign("OpenedExam.html");
+    }
         
    }
    

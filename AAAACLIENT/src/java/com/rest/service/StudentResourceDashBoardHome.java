@@ -376,7 +376,7 @@ public class StudentResourceDashBoardHome {
           try{
                
              getTotalSubjectRank = connection.prepareStatement("SELECT * from results WHERE courseId LIKE ? AND type=? ");
-                 getTotalSubjectRank.setString(1, "%"+subject+"%");
+               getTotalSubjectRank.setString(1, "%"+subject+"%");
                getTotalSubjectRank.setString(2, type);
                
              ResultSet getTotalSubjectRankResult = getTotalSubjectRank.executeQuery();

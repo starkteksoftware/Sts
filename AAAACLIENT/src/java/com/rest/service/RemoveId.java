@@ -19,7 +19,8 @@ public class RemoveId {
         
       String getCourses =  courses.get(id);
        
-    String newCourses =  getCourses.replaceFirst(course, "");
+    String newCourses =  getCourses.replace(course, "");
+    
     System.err.println(newCourses);
     courses.put(id, newCourses);
     

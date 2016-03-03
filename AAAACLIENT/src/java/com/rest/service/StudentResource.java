@@ -254,6 +254,11 @@ public class StudentResource {
              StudentResourceViewProfile getProfile = new StudentResourceViewProfile();
              return new Gson().toJson(getProfile.queryData(matric));
          }
+         
+         if (status == 6){
+             StudentResourceViewProfile getSubject = new StudentResourceViewProfile();
+             return new Gson().toJson(getSubject.learderBoardSubjects(subjects));
+         }
 
 
 

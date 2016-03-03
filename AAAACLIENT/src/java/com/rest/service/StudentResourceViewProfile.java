@@ -25,6 +25,7 @@ public class StudentResourceViewProfile {
     PreparedStatement getResult = null;
     PreparedStatement getRanking = null;
     ResultSet results = null;
+    PreparedStatement getSubjectRank = null;
     
     
     public String queryData(String matric){
@@ -112,6 +113,43 @@ public class StudentResourceViewProfile {
          }
         
         return "";
+    }
+    
+    
+    
+    public String learderBoardSubjects(String subject){
+         try{
+             javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+             javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
+             connection = ds.getConnection();
+             getSubjectRank = connection.prepareStatement("SELECT matric,score,time,dateYear from results where courseId = ? ORDER BY score DESC, time ASC  ");
+             getSubjectRank.setString(1, subject);
+             results = getSubjectRank.executeQuery();
+             StringBuilder appender = new StringBuilder();
+             while(results.next()){
+                 appender.append("#").append(results.getString("matric")).append(",");
+                 appender.append(results.getString("score")).append(",");
+                 appender.append(results.getString("time")).append(",");
+                 appender.append(results.getString("dateYear"));
+             }
+             
+             return new Gson().toJson(appender.toString());
+         }
+         catch(NamingException | SQLException e){
+             e.printStackTrace();
+         }
+         
+         finally{
+            try{
+             if(results != null)
+                 results.close();
+             if(connection != null)
+                 connection.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+         }
+        return new Gson().toJson("No results");
     }
     
     

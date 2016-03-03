@@ -17,7 +17,26 @@ function start(){
   
   document.getElementById("fullImage").src = sessionStorage.getItem("URL")+"/AAAACLIENT/ImageRetriever?image="+user;
   
-  var getStudent = document.URL.split("?");
+   
+  $("#logout").click(function (){
+      localStorage.clear();
+      
+        window.location.assign("index.html");
+  })
+  $("#logout2").click(function (){
+      localStorage.clear();
+      window.location.assign("index.html");
+  });
+  
+  $("#lockscreen").click(function (){
+      
+  });
+  
+  $("#fullScreen").click(function (){
+      $("#menu_toggle").trigger("click");
+  });
+  
+  var getStudent = document.URL.split("?matric=");
   document.getElementById("proPic").src = sessionStorage.getItem("URL")+"/AAAACLIENT/ImageRetriever?image="+getStudent[1];
     getReport(getStudent[1]);
     
@@ -108,7 +127,7 @@ function getReport (matric){
                     label: "Complete"
                 },
                 {
-                    value: parseInt(100 -percentage)+1,
+                    value: parseInt(100 -percentage),
                     color: "#FF0000",
                     label: "Incomplete"
                 }];
@@ -118,7 +137,7 @@ function getReport (matric){
      
      var doughnutDatas = [
                 {
-                    value: parseInt((100 - passpercent)+1),
+                    value: parseInt((100 - passpercent)),
                     color: "#FF0000",
                     label: "Failed"
                 },
@@ -208,13 +227,13 @@ function getReport (matric){
           
           if(value < 5){
                
-  var text ='<li><a id="'+bardata[0]+'" title="view '+bardata[0]+'" class="showboard" href="javascript:;"><i class="fa fa-external-link"></i></a>'
+  var text ='<li><a id="'+bardata[0]+'::exam" title="view '+bardata[0]+'"  class="showboard" href="javascript:;"><i id="'+bardata[0]+'::exams" class="fa fa-external-link"></i></a>'
           +'<div class="message_date">'
           +'<h3 class="date text-info">'+bardata[3].split("-")[2]+'</h3>'
           +'<p class="month">'+month+'</p><h4 class="date text-info">'+bardata[3].split("-")[0]+'</h4>'
           +'</div>'
           +'<div class="message_wrapper">'
-          +'<h4 class="heading">'+bardata[0]+'</h4>'
+          +'<h4 class="heading adejobi" id="'+bardata[0]+'::ex" >'+bardata[0]+'</h4>'
           +' <blockquote class="message"> score : '+bardata[1]+'  time left: '+bardata[2]+'  completed :'+com+' </blockquote>'
           +'<br />'
           +'<p class="url">'
@@ -276,8 +295,19 @@ function getReport (matric){
       
      
       document.getElementById("recentActivitiy").innerHTML = addUp;
+     
       document.getElementById("performance").innerHTML = perform;
       document.getElementById("ranks").innerHTML = ranker;
+      $(".showboard").click(function (e){
+         
+          getExamData(e.target.id.split("::")[0]);
+        
+      });
+      $(".adejobi").click(function (e){
+          getExamData(e.target.id.split("::")[0]);
+        
+      });
+     
        Morris.Bar({
                 element: 'graph_bar',
                 data: barDataArray,
@@ -293,4 +323,256 @@ function getReport (matric){
  }
  
  
+ 
+ function getExamData(exam){
+     
+    
+    var login = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/course/information?status=6";
+    var requestUrl = login+"&subjects="+exam;
+   try
+ {
+     var asyncRequest = new XMLHttpRequest(); // create request
+
+ // set up callback function and store it
+ asyncRequest.addEventListener("readystatechange",
+ function() { 
+            parse(asyncRequest);  //callBack( asyncRequest );
+ }, false);
+     
+    asyncRequest.open( "GET", requestUrl, true );
+ asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8" );
+ asyncRequest.send(); // send request
+ 
+
+ } // end try
+ catch ( exception )
+ {
+ console.log ( exception);
+ } // end catch
+ 
+ function parse( asyncRequest )
+ {
+  // if request has completed successfully, process the response
+ if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 )
+ {
+ // convert the JSON string to an Object
+ var data = JSON.parse(asyncRequest.responseText);
+ 
+ 
+            table(data);
+ $("#myModalLabel").html("Leader Board");
+ $("#vStudent").modal();
+ //alert(data);
+ 
+   
+ }
+ }
+ 
+ }
+ 
+ function linker(e){
+   
+     
+ }
+ 
+ 
+ function table(str){
+     var table = document.getElementById("lead");
+     var sec = str.split("#");
+     var length = sec.length;
+     var remainder= Math.floor(length / 10);
+     var nums = 1;
+     var stri = "";
+    
+     for(var ii = 0; ii <= remainder; ii++){
+          stri+='<button class="btn adew btn-info" id="pg'+ii+'" type="button">'+(ii + 1)+'</button>';
+      }
+       
+      $("#leadPg").html(stri);
+       $(".adew").click(function (e){
+           $(".adew").removeClass("active");
+           
+           
+              var addUp = "";
+              nums =   parseInt(e.target.innerHTML);
+                 
+                  
+                   var val = nums * 10;
+                var c = val - 10;
+            if(c== 0){
+                c=1;
+            }
+             
+                 for( c; c < val; c++){
+         if(sec[c] === undefined){
+            break;
+        }
+             
+               var split = sec[c].split(",");
+       
+        
+     
+     var join = "";
+   
+     
+     
+     var sp = split.length;
+       for( var i = 0; i < sp; i++){
+           
+           
+           
+           
+           
+       //    var exams = new exam(split[0],split[1],split[2],split[3],split[4]);
+           
+           
+          
+         //  var pp =JSON.stringify(exams);
+           
+           //examination.push(pp);
+          
+            
+              
+           if(i == 0){
+              
+               join+="<td>"+c+"</td>";
+               
+               var splitted = split[0].split(" ");
+          ids= splitted[0]+","+splitted[1]+","+split[2]+","+split[3]+","+split[1];
+           
+            }
+          join+="<td>"+split[i]+"</td>"; 
+         
+       }
+         join+="<td> <img src=' "+sessionStorage.getItem('URL')+"/AAAACLIENT/ImageRetriever?image="+split[0]+"' width='30px' height='30px' class='img-circle ' /></td>";
+       
+    
+          
+      
+     var addition ="<tr>";
+    
+     addition+=join;
+      addition+="</tr>";
+    
+   
+       addUp+=addition;
+      
+        
+         
+     }
+     
+  
+     
+     
+     var copy;
+     var addSplit = addUp.split("undefined");
+   for(var ii =0; ii < addSplit.length; ii++){
+       if(addSplit[ii].indexOf("undefined") >= 0){
+           
+       }
+       else{
+           copy+=addSplit[ii];
+           
+       }
+   }
+     
+      
+     var splitAgain = copy.split("undefined");
+     table.innerHTML = splitAgain[1];
+       
+      });
+      
+        
+      
+      
+     
+     
+     
+     
+     
+     var tableAdd;
+     var addUp = "";
+ 
+     var ids="i know";
+     var vp = "";
+    
+     
+     sec = str.split("#");
+     
+      var val = nums * 10;
+     for( var c = nums; c < val; c++){
+     
+      try{
+          //or turn to 1
+     var split = sec[c].split(",");
+ }
+ 
+ catch(exc){
+                    continue;
+ }
+     var join = "";
+     for( var i = 0; i < split.length; i++){
+         if(i == 0){
+              
+            join+="<td>"+c+"</td>";
+            vp =  split[0]+","+split[1]+","+split[2]+","+split[3]+","+split[1];
+        
+        }
+           
+           
+           if(i == 3){
+               ids=split[i];
+           }
+           
+          
+           
+        
+           
+         join+="<td>"+split[i]+"</td>"; 
+       }
+   
+       
+        
+         join+="<td> <img src=' "+sessionStorage.getItem('URL')+"/AAAACLIENT/ImageRetriever?image="+split[0]+"' width='30px' height='30px' class='img-circle ' /></td>";
+       
+         
+     var addition ="<tr>";
+    
+     addition+=join;
+      addition+="</tr>";
+       
+       addUp+=addition;
+      
+        
+         
+     }
+     
+  
+     
+     
+     var copy;
+     var addSplit = addUp.split("undefined");
+   for(var ii =0; ii < addSplit.length; ii++){
+       if(addSplit[ii].indexOf("undefined") >= 0){
+           
+       }
+       else{
+           copy+=addSplit[ii];
+           
+       }
+   }
+     
+     var splitAgain = copy.split("undefined");
+     
+     
+     
+     
+     
+     
+    
+     
+     table.innerHTML = splitAgain[1];
+     
+     
+ }
 window.addEventListener("load",start,false);

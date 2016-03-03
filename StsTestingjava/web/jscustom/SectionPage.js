@@ -55,6 +55,8 @@ function parseValue(){
                 
             })
             
+            document.getElementById("viewP").href = "ViewStudentProfile.html?matric="+localStorage.getItem("user");
+            
    
 // $("#pop").modal();
 
@@ -158,7 +160,7 @@ function parseLog( asyncRequest )
        //var str = data;
        
        if(data == "Server not started"){
-           alert("yeah");
+           alert("Server not started, please contact administrator");
            return;
        }
         

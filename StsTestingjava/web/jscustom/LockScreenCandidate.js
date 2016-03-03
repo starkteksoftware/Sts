@@ -12,7 +12,8 @@ function start(){
     
     var user = localStorage.getItem("user");
      if(user == null){
-         window.location.assign("index.html");
+         window.location.assign("candidateLog.html");
+         
      }
      
    $("#name").html(user);
@@ -32,7 +33,8 @@ function key(e){
          
        var password = document.getElementById("pwd").value;
          if(password == null || password.length < 3){
-            window.location.assign("index.html");
+             window.location.assign("candidateLog.html");
+             
            return;
        }
  var login = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/verify/login?status=2";
@@ -95,7 +97,8 @@ if(data != "false"){
      
     }
     else{
-          window.location.assign("candidateLog.html");
+          window.location.assign("SectionPage.html");
+          
      }
 }
  }

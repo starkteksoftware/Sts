@@ -12,6 +12,8 @@ var showresult = true;
 var minutesLeft = 0;
 var secondsLeft = 0;
 var hoursleft = 0;
+var paginationTracker = [];
+
 
 
 
@@ -31,8 +33,8 @@ function parseValue(){
  
  
  
- // if(data == null)
-   // window.location.assign("candidateLog.html");
+  if(data == null)
+    window.location.assign("candidateLog.html");
 
            $("#name").html(data.split("#")[1].split(",")[0]+" "+data.split("#")[1].split(",")[1]);
            $("#pName").html(data.split("#")[1].split(",")[0]+" "+data.split("#")[1].split(",")[1]);
@@ -44,6 +46,18 @@ function parseValue(){
            $("#lock").click(function(e){
      
                         showDown = !showDown;
+            })
+            
+            $("#fullImage").click(function (){
+                showP();
+                
+            })
+            
+            $("#closeCourse").click(function (e){
+               
+               // subjectsRegister = [];
+               
+                
             })
             
             $("#startNewTest").click(function (){
@@ -747,6 +761,8 @@ function parseData(asyncRequest){
  //var data = JSON.parse(asyncRequest.responseText);
 
  var data = JSON.parse(asyncRequest.responseText);
+ 
+ 
      
       var clicked = [];
      
@@ -762,8 +778,16 @@ function parseData(asyncRequest){
       $("#courseCount").html("Total Available course : "+(length-1));
       
       $("#coursesPg").html(stri);
+      
+     
+      for(var c = 0;  c < paginationTracker.length; c++){
+          document.getElementById(paginationTracker[c]).className = document.getElementById(paginationTracker[c]).className + " red";
+      }
         $(".adewale").click(function (e){
             $(".adewale").removeClass("active");
+            
+            localStorage.setItem("pgclicked",e.target.id);
+            
            
               var val = parseInt(e.target.innerHTML) * 5;
                    var tempTable = "";
@@ -797,7 +821,13 @@ function parseData(asyncRequest){
      table.innerHTML = tempTable;
      
      $(".icheckbox_flat-green").click(function (e){
+         
+         if(paginationTracker.indexOf(localStorage.getItem("pgclicked")) === -1)
+             paginationTracker.push(localStorage.getItem("pgclicked"));
       
+       document.getElementById(localStorage.getItem("pgclicked")).className = document.getElementById(localStorage.getItem("pgclicked")).className +" red";
+       
+        
         var loopThrough = subjectsRegister.toString().split(",");
         for(var i = 0; i < loopThrough.length; i++){
             if(loopThrough[i] == e.target.id){
@@ -830,15 +860,32 @@ function parseData(asyncRequest){
 
        var split = sec[c].split(",");
        
+     // join+="<tr><td>"+c+"</td><td>"+split[0]+"</td><td>"+split[1]+"</td><td>"+split[2]+"</td><td>"+split[3]+"</td><td><input type='checkbox' id='"+split[0]+"' class='icheckbox_flat-green'  /></td></tr> ";
+         if(subjectsRegister.indexOf(split[0]) != -1){
+         if(split[0] === subjectsRegister[subjectsRegister.indexOf(split[0])]){
+             console.log("equality")
+              join+="<tr><td>"+c+"</td><td>"+split[0]+"</td><td>"+split[1]+"</td><td>"+split[2]+"</td><td>"+split[3]+"</td><td><input type='checkbox' id='"+split[0]+"' class='icheckbox_flat-green' checked=''  /></td></tr> ";
+  
+                    }
+       }
+       else{
       join+="<tr><td>"+c+"</td><td>"+split[0]+"</td><td>"+split[1]+"</td><td>"+split[2]+"</td><td>"+split[3]+"</td><td><input type='checkbox' id='"+split[0]+"' class='icheckbox_flat-green'  /></td></tr> ";
-     }
+  }
+        
+        }
          
    
+    
      
      table.innerHTML = join;
     
  $(".icheckbox_flat-green").click(function (e){
+       if(paginationTracker.indexOf("pg0") === -1)
+             paginationTracker.push("lpg0");
+         
       var loopThrough = subjectsRegister.toString().split(",");
+       document.getElementById("pg0").className = document.getElementById("pg0").className +" red";
+       
         for(var i = 0; i < loopThrough.length; i++){
             if(loopThrough[i] == e.target.id){
                 subjectsRegister.splice(i,1);
@@ -888,7 +935,8 @@ function clic(e){
          document.getElementById(presentNumbers+".").className = document.getElementById(presentNumbers+".").className+" red";
       
       }
-       
+      
+      
     
     
     
@@ -1026,6 +1074,16 @@ function parseLog( asyncRequest )
     
          if(seperate[10] != "null")
       $("#comment").val(seperate[10]);
+  
+    
+     //
+     
+     
+    if(seperate[4] == "M")
+       $("#gender1").trigger("click");
+    else
+        $("#gender2").trigger("click");
+       
   
    document.getElementById("sClick").src = sessionStorage.getItem("URL")+"/AAAACLIENT/ImageRetriever?image="+localStorage.getItem("user");
  

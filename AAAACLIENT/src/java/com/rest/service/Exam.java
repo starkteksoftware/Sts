@@ -1495,13 +1495,24 @@ getAllStudentsQuery = connection.prepareStatement("SELECT * FROM newstudenttable
      @GET
      @Path( "{student}/{matric}" ) 
     @Produces("application/json")
-     public String getMatric(@QueryParam("matric") String matric,@QueryParam("status") int status,@QueryParam("exam") String exam){
+     public String getMatric(@QueryParam("matric") String matric,@QueryParam("status") int status,@QueryParam("exam") String exam,@QueryParam("password") String password){
          
          
          
          if(status == 3){
              
              
+         }
+         
+         
+         if(password != null){
+             
+             
+             LogIn log = new LogIn();
+             if(log.checkUser(matric, password) == 0)
+                 return new Gson().toJson("Invalid password");
+             
+                 
          }
          
          

@@ -15,6 +15,7 @@ function start(){
   
      hide = document.getElementById('invalid');
     hide.setAttribute("style","display:none");
+    $("#invalids").hide();
     
  
      var url = document.URL;
@@ -32,6 +33,8 @@ function start(){
 function verify(){
   
    $(".red").hide();
+    $("#invalid").hide();
+     $("#invalids").hide();
   user = document.getElementById("username").value;
   password =document.getElementById("pwd").value;
   
@@ -40,18 +43,15 @@ function verify(){
  
  
  if(user === null || user.length === 0){
-         document.getElementById("statTexts").innerHTML = "Enter a user name";
-    $("#statTexts").show("slow");
-    
+          $("#invalid").show();
   return;
  }
  
  if(password === null || password.length === 0){
-          document.getElementById("statTexts").innerHTML = "Enter a password";
-    $("#statTexts").show("slow");
-    
+          $("#invalid").show();
    return;
  }
+ 
  
  log();
  
@@ -71,18 +71,22 @@ function checkuserName(){
 function log(){
   
   
-    $("#statTexts").hide();
+    $("#invalids").hide();
+     $("#invalid").hide();
     
     
 var login = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/exam/student/matric";
 
   
 matricNumber = document.getElementById("username").value;
+  var pass =document.getElementById("pwd").value;
 
-    var requestUrl = login+"?matric="+matricNumber;
+    var requestUrl = login+"?matric="+matricNumber+"&password="+pass;
+     
         //+ methodAndArguments;
         
   
+   
     
    try
  {
@@ -130,20 +134,25 @@ if(data === "true"){
           
    
 }
+if(data === "Invalid password"){
+     $("#invalid").show();
+    
+    return;
+}
 if(data ==="session active"){
     
      
       
     
       
-    document.getElementById("statTexts").innerHTML = "Session active";
-    $("#statTexts").show("slow");
+  
+    $("#invalids").show();
     
     return;
 }
 if(data === "false"){
-        document.getElementById("statTexts").innerHTML = "Please you have not registered";
-    $("#statTexts").show("slow");
+    $("#invalids").show();
+    
     
     return;
 }

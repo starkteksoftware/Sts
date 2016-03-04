@@ -1103,6 +1103,16 @@
     <script type="text/javascript" src="theme/js/notify/pnotify.buttons.js"></script>
     
     <script type="text/javascript" src="jscustom/calc4chem.js"></script>
+    
+    <script type="text/javascript"> 
+function FCKeditor_OnComplete( editorInstance ) 
+{ 
+    alert("load");
+var oCommand = editorInstance.Commands.GetCommand('radio') ;
+oCommand.Execute = function(){return false;} ;
+oCommand.GetState = function(){return FCK_TRISTATE_DISABLED;} ;
+} 
+</script> 
  
 <script>
 function addLoadEvent(func) {

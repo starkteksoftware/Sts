@@ -6,6 +6,7 @@
 package com.rest.service;
 
 import com.google.gson.Gson;
+import static com.rest.service.StartUpClassOngoingExams.studentsRegistered;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,6 +82,9 @@ public class StudentRegistration {
           
           InsertStudentsDatabaseQueryXcelSheet insert = new InsertStudentsDatabaseQueryXcelSheet();
           insert.createPreparedStatement();
+          System.out.println("adding students in student registration to enable log in");
+          studentsRegistered.put(matric, lastName+" "+firstName);
+          Exam.registeredStudents.put(matric, "#"+lastName+","+firstName+","+middleName+","+gender+","+matric);
           
         
             System.out.println("inserting into table "+firstName +" "+lastName +" "+matric);

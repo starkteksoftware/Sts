@@ -16,14 +16,8 @@ var paginationTracker = [];
 
 
 
-
-function parseValue(){
-   
- // if request has completed successfully, process the response
- 
- // convert the JSON string to an Object
-
-            document.getElementById("courseReg").addEventListener("click",courseRegisterFire,false);
+function start(){
+       document.getElementById("courseReg").addEventListener("click",courseRegisterFire,false);
             document.getElementById("showProfile").addEventListener("click",showP,false);
             document.getElementById("editP").addEventListener("click",showP,false);
             var data =  localStorage.getItem("detail");
@@ -125,7 +119,16 @@ if( data === "false"){
 
 
 
+    parseValue(data);
+}
 
+function parseValue(data){
+   
+ // if request has completed successfully, process the response
+ 
+ // convert the JSON string to an Object
+
+         
     var splif = data.split("#");
     var spliffed = splif[1];
     var sect = spliffed.split(",");
@@ -591,6 +594,7 @@ $("#postExam").click(function (e){
         
         e.stopPropagation();
         $("#startExaminationS").hide();
+        showTabs();
         
  if(showresult){
             var percentage = 0;
@@ -1515,6 +1519,24 @@ function parseDatas(asyncRequest){
 
 }
 
- window.addEventListener("load",parseValue,false);
+
+function showTabs(){
+    presentQuestions = 0;
+    presentNumbers = 0;
+    totalAnswers = [];
+
+    minutesLeft = 0;
+   secondsLeft = 0;
+    hoursleft = 0;
+    $("#nextload").show("slow");
+     var data =  localStorage.getItem("detail");
+            parseValue(data);
+            
+            $("#tabHide").show();
+          $("#studentPg").show();
+            
+}
+ window.addEventListener("load",start,false);
+ 
  
 window.addEventListener("click",clic,false);

@@ -12,9 +12,13 @@ var questionS = "";
 var update = false;
 
 
+
+    
+
 function start(){
     
-    
+     
+
     $("#test").modal();
     
    var user = localStorage.getItem("user");

@@ -59,6 +59,13 @@ var initSample = ( function() {
 } )();
 
 
+ function FCKeditor_OnComplete( editorInstance ) 
+{ 
+ 
+} 
+    
+
+
  
 
 

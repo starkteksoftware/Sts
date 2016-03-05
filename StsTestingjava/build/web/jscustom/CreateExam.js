@@ -17,7 +17,7 @@ var update = false;
 
 function start(){
     
-     
+     try{
 
     $("#test").modal();
     
@@ -551,8 +551,9 @@ function parseLogss(asyncRequest){
    var begLength = beginning.length;
    var table = document.getElementById("examTableBody");
    var saveExamsArray = [];
-   var remainder= Math.floor(begLength/ 10);
+   var remainder= Math.floor(begLength/ 5);
    
+    
    var stri = "";
       for(var ii = 0; ii <= remainder; ii++){
           stri+='<button class="btn jol btn-info" type="button">'+(ii + 1)+'</button>'
@@ -564,9 +565,9 @@ function parseLogss(asyncRequest){
                  
                  
                   
-                   var val = parseInt(e.target.innerHTML) * 10;
+                   var val = parseInt(e.target.innerHTML) *5;
                    var tempTable = "";
-                   var c = val - 10;
+                   var c = val - 5;
                     if(c== 0)
                         c=1;
                     
@@ -654,7 +655,7 @@ function parseLogss(asyncRequest){
         
          var tempTable = "";
   
-        for( var c = 1; c < 10; c++){
+        for( var c = 1; c < 5; c++){
            var split = beginning[c].split("[middle]");
                split[0];  //usually the subject;
                split[1];  //usually the question
@@ -761,7 +762,10 @@ $("#exams").modal();
     
     
    $("#closeMode").trigger("click");
-   
+     }
+     catch(exc){
+         console.log(exc);
+     }
 
 }
 

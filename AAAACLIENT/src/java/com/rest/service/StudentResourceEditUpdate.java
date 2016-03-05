@@ -16,6 +16,7 @@ import javax.naming.NamingException;
  *
  * @author user
  */
+
 public class StudentResourceEditUpdate {
      Connection connection = null;
     PreparedStatement edit = null;
@@ -27,7 +28,7 @@ public class StudentResourceEditUpdate {
        javax.naming.InitialContext ctx = new javax.naming.InitialContext();
         javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
         connection = ds.getConnection();
-        edit = connection.prepareStatement("SELECT * from candidateData WHERE matric =?");
+        edit = connection.prepareStatement("SELECT * from candidatedata WHERE matric =?");
         edit.setString(1, matric);
         
         result = edit.executeQuery();StringBuilder append = new StringBuilder();

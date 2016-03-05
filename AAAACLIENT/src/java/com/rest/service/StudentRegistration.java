@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.mail.MessagingException;
 import javax.naming.NamingException;
 
 /**
@@ -93,6 +94,12 @@ public class StudentRegistration {
         String results =insert.returnStatusQuery(firstName, lastName, middleName, gender, matric);
          
         connection.commit();
+        try{
+         StudentResourceMailSendReciever.mailsend( matric, email, " STS successfull candidate registration","Your log in details are your password and candidate number as  ");
+        }
+        catch(MessagingException e){
+            e.printStackTrace();
+        }
          
          return  new Gson().toJson("matric:"+matric);
          
@@ -121,7 +128,8 @@ public class StudentRegistration {
           }
           finally{
               try{
-                  if(connection != null)
+                  
+                   if(connection != null)
                       connection.close();
               }
               catch(SQLException e){

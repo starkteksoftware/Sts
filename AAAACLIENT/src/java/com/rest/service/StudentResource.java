@@ -259,6 +259,12 @@ public class StudentResource {
              StudentResourceViewProfile getSubject = new StudentResourceViewProfile();
              return new Gson().toJson(getSubject.learderBoardSubjects(subjects));
          }
+         
+         if(status == 7){
+             StudentResourceResult delete = new StudentResourceResult();
+             return new Gson().toJson(delete.UnregisterStudent(matric, subjects));
+         }
+         
 
 
 

@@ -5,6 +5,7 @@
  */
 package com.rest.service;
 
+import com.google.gson.Gson;
 import static com.rest.service.Exam.loggedIn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,6 +29,38 @@ public class StudentResourceResult {
     PreparedStatement getOverallRank = null;
     PreparedStatement removeCourse = null;
     
+    
+    public String UnregisterStudent(String matric,String exam){
+          try{
+         javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+         javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
+         connection = ds.getConnection();
+         removeCourse = connection.prepareStatement("DELETE from examstudenttable where matricExam=? ");
+              System.out.println(matric+"***"+exam);
+         removeCourse.setString(1, matric+"***"+exam);
+         removeCourse.executeUpdate();
+         RemoveId.removeId(matric, loggedIn,Exam.registeredCourses,exam);
+         
+         return new Gson().toJson("1");
+         
+       
+        
+          }
+          catch(NamingException | SQLException e){
+              e.printStackTrace();
+          }
+          finally{
+              try{
+                 if(connection != null)
+                     connection.close();
+              }
+              catch(SQLException e){
+                  e.printStackTrace();
+                  
+              }
+          }
+        return "";
+    }
     
      public String postResult(String id,String courseId,String attempt,String time,String score,String type,boolean complete) throws ArrayIndexOutOfBoundsException{
          
@@ -131,6 +164,16 @@ public class StudentResourceResult {
     }
     catch(NamingException | SQLException e ){
         e.printStackTrace();
+    }
+    
+    finally{
+        try{
+        if(connection!= null)
+            connection.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
     }
     
          

@@ -43,7 +43,7 @@ public class StudentResourceHandleMailing {
         }
         if(password.length() > 1){
             try{
-           StudentResourceMailSendReciever.mailsend( password, email, " STS Email Retrieval Request");
+           StudentResourceMailSendReciever.mailsend( password, email, " STS Email Retrieval Request","Your password is ");
            
             }
             catch(  MessagingException   e){

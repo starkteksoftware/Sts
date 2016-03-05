@@ -5,6 +5,7 @@
  */
 
 function start(){
+     try{
      var user = localStorage.getItem("user");
       var session = sessionStorage.getItem("URL");
       if(user == null || session == null){
@@ -42,7 +43,10 @@ function start(){
     
  
   
-   
+    }
+    catch(exc){
+       console.log(exc) 
+    }
    
 }
 
@@ -86,11 +90,15 @@ function getReport (matric){
  $("#nextload").hide("slow");
  
  //alert(data);
- 
+ try{
             var sendData = data.split("***#");
             setCandidateData(sendData[0].split("#")[1]);
          total =   barchart(sendData[1],sendData[2]);
             overview(sendData[1].split("***")[1],sendData[1].split("***")[2],total);
+        }
+        catch(exc){
+            console.log(exc);
+        }
  }
  }
  

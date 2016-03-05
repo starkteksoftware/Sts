@@ -44,7 +44,11 @@ function log(){
 
  var data = JSON.parse(asyncRequest.responseText);
  items = data;
+ try{
  arranged();
+ }catch(exc){
+     console.log(exc)
+ }
   // display data on the page
  } // end if
  }
@@ -123,8 +127,8 @@ function log(){
          
        }
     
-      join+="<td> <a href='javascript::' ><i class='fa fa-user'></i> </a> "+"</td>"; 
-       
+       join+="<td> <a href='ViewStudentProfile.html?matric="+split[3]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
+        
      var addition ="<tr>";
     
      addition+=join;
@@ -196,8 +200,8 @@ function log(){
          
        }
     
-      join+="<td> <a href='javascript::' ><i class='fa fa-user'></i> </a> "+"</td>"; 
-       
+      join+="<td> <a href='ViewStudentProfile.html?matric="+split[3]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
+         
      var addition ="<tr>";
     
      addition+=join;

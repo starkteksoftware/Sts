@@ -5,6 +5,7 @@
 package com.rest.service;
 
 import com.google.gson.Gson;
+import java.util.Arrays;
 
 
 /**
@@ -24,24 +25,26 @@ public class RegistredStudentsExams {
          if(Exam.registeredCourses.containsKey(id)){
             
              String manipulate = Exam.ongoingExam;
+             System.out.println(manipulate);
              
              
             String [] distrubute  = Exam.registeredCourses.get(id).split(",");
+             System.out.println(Arrays.toString(distrubute));
+             
              
              
             
             for(String dis : distrubute){
-               
+             if(dis.equals("")){
+                 System.out.println("distrubute is empty ");
+                 continue;
+             }
              int index = manipulate.indexOf(dis);
              int second = manipulate.lastIndexOf("#",index);
-             
              int third = manipulate.indexOf("#",(second + 1));
-             
-              
-             
              if(third == -1){
                  String sub = manipulate.substring(second,manipulate.length());
-            
+                
                  appended.append(sub);
              }
              else{
@@ -52,8 +55,14 @@ public class RegistredStudentsExams {
                  }
                  else{
              String sub = manipulate.substring(second, third);
+             
              System.out.println("these is it in the new state "+sub);
+             if(sub.split(",")[0].substring(1, sub.split(",")[0].length()).equals(dis))
                  appended.append(sub);
+             else{
+                 System.out.println(sub.split(",")[0].substring(1, sub.split(",")[0].length())+" not appended");
+                 
+             }
                  }
            
              }

@@ -132,6 +132,18 @@ public class StudentResourceGetRegisteredExams {
     catch(NamingException | SQLException e ){
         e.printStackTrace();
     }
+                   
+                   finally{
+                       try{
+                       if(result!=null)
+                           result.close();
+                       if(connection!=null)
+                           connection.close();
+                       }
+                       catch(SQLException e){
+                           
+                       }
+                   }
          
           
          return ""; 

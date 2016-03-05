@@ -211,7 +211,7 @@ function getReport (){
  // convert the JSON string to an Object
 
  var data = JSON.parse(asyncRequest.responseText);
- alert(data);
+ //alert(data);
  
  var getdata = data.split("***");
             barchart(getdata[0]);
@@ -229,7 +229,7 @@ function leaderBoard(str,complete,pass){
     for (var c  = 1; c < seperate.length; c++){
     var sep = seperate[c].split(",");
          addUp +='   <li class="media event"><a class="pull-left  profile_pic"><img width="60px" height="60px" src="'+sessionStorage.getItem("URL")+"/AAAACLIENT/ImageRetriever?image="+sep[0]+'" class="border-aero img-circle profile_thumb " style="" /></a>'
-                   +'<div class="media-body"><a class="title" href="ViewStudentProfile.html?'+sep[0]+'">'+sep[0]+'</a><p><strong><span> </span>'+sep[1]+'%</strong> <span> </span>'+sep[2]+'</p>'
+                   +'<div class="media-body"><a class="title" href="ViewStudentProfile.html?matric='+sep[0]+'">'+sep[0]+'</a><p><strong><span> </span>'+sep[1]+'%</strong> <span> </span>'+sep[2]+'</p>'
                    +' <p> <small>'+c+'</small> </p></div></li>';
        }
        

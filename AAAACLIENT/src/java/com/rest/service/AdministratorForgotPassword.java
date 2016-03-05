@@ -50,7 +50,8 @@ public class AdministratorForgotPassword {
         }
         if(password.length() > 1){
             try{
-           StudentResourceMailSendReciever.mailsend( password, email, " STS Email Retrieval Request");
+           StudentResourceMailSendReciever.mailsend( password, email, " STS Email Retrieval Request","Your pasasword is ");
+           
            
             }
             catch(  MessagingException   e){
@@ -66,7 +67,9 @@ public class AdministratorForgotPassword {
         
          finally{
             try{
+                if(result!=null)
                  result.close();
+                if(connection!=null)
                  connection.close();
                  
             }

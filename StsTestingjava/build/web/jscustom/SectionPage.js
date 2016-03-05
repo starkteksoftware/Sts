@@ -17,13 +17,14 @@ var paginationTracker = [];
 
 
 function start(){
+    
+    try{
        document.getElementById("courseReg").addEventListener("click",courseRegisterFire,false);
             document.getElementById("showProfile").addEventListener("click",showP,false);
             document.getElementById("editP").addEventListener("click",showP,false);
             var data =  localStorage.getItem("detail");
             
             
- 
  
  
  
@@ -46,7 +47,9 @@ function start(){
             })
             
             $("#fullImage").click(function (){
-                showP();
+            
+                 showP();
+                 
                 
             })
             
@@ -61,6 +64,7 @@ function start(){
                 window.location.assign("SectionPage.html");
                 
             });
+            
              $("#startNewTests").click(function (){
                 $("#viewP").trigger("click");
                 
@@ -120,6 +124,10 @@ if( data === "false"){
 
 
     parseValue(data);
+    }
+    catch(exc){
+        console.log(exc);
+    }
 }
 
 function parseValue(data){
@@ -208,7 +216,7 @@ function parseLog( asyncRequest )
              
        //var remainder = ;
      // var remainder= Math.floor(lengths / 10);
-           var addUp;
+           var addUp ="";
            
            
                  nums =   parseInt(e.target.innerHTML);
@@ -260,7 +268,7 @@ function parseLog( asyncRequest )
          join+="<td>"+split[i]+"</td>"; 
        }
    
-          join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> "+"</td>"; 
+            join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
@@ -282,7 +290,9 @@ function parseLog( asyncRequest )
      
      
      var copy;
+     if( addUp.indexOf("undefined") !== -1){
      var addSplit = addUp.split("undefined");
+ 
    for(var ii =0; ii < addSplit.length; ii++){
        if(addSplit[ii].indexOf("undefined") >= 0){
            
@@ -292,6 +302,7 @@ function parseLog( asyncRequest )
            
        }
    }
+     
      
      var splitAgain = copy.split("undefined");
      
@@ -303,7 +314,10 @@ function parseLog( asyncRequest )
    
      
      table.innerHTML = splitAgain[1];
-     
+ }
+ else{
+     table.innerHTML = addUp;
+ }
      $(".fa-key").click(function (e){
          
        localStorage.setItem("activeExam",e.target.id);
@@ -315,9 +329,32 @@ function parseLog( asyncRequest )
         // setExam(e);
          });
       
+       $(".fa-times").click(function (e){
+                
+ 	 $.ajax({
+
+            url: sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/course/information?status=7&matric="+localStorage.getItem("user")+"&subjects="+e.target.id, 
+            type: 'GET',
+           
+
+            success: function(response) {
+               
+             var data = JSON.parse(response);
+             
+             window.location.assign("SectionPage.html");
+            },
+            error: function(error) {
+            	
+                console.log(error);
+            }
+        });
+      
+        // setExam(e);
+         });
+      
            
        });
-      
+      var addUp="";
         var val = nums * 10;
      for( var c = nums; c < val; c++){
        
@@ -357,8 +394,7 @@ function parseLog( asyncRequest )
          join+="<td>"+split[i]+"</td>"; 
        }
      
-           join+="<td> <a href='#startExamination'  ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> "+"</td>"; 
-      
+            join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
@@ -412,9 +448,35 @@ function parseLog( asyncRequest )
           $("#startExamPop").modal();
           $("#start").click(function (){
               setExam(e);;
-          })
+          });
         //  
          })
+         
+         
+           $(".fa-times").click(function (e){
+                  
+ 	 $.ajax({
+
+            url: sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/course/information?status=7&matric="+localStorage.getItem("user")+"&subjects="+e.target.id, 
+            type: 'GET',
+           
+
+            success: function(response) {
+               
+             var data = JSON.parse(response);
+             
+             window.location.assign("SectionPage.html");
+            },
+            error: function(error) {
+            	
+                console.log(error);
+            }
+        });
+      
+        // setExam(e);
+        
+        // setExam(e);
+         });
        
       // callpopulator();
         
@@ -499,6 +561,12 @@ function singleAnswer(questions){
     
     
     $("#next").click(function(){
+        
+          if(questionCount == (question.length - 2)){
+            $("#postExam").show();
+            
+          }
+          
         
          if(questionCount == (question.length - 1)){
               
@@ -594,7 +662,7 @@ $("#postExam").click(function (e){
         
         e.stopPropagation();
         $("#startExaminationS").hide();
-        showTabs();
+        
         
  if(showresult){
             var percentage = 0;
@@ -671,7 +739,7 @@ $("#postExam").click(function (e){
     var login = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/exam/start/section/exam";
     var requestUrl = login+"?matric="+localStorage.getItem("user")+"&exam="+localStorage.getItem("activeExam")+"&type="+localStorage.getItem("eType")+"&status=result"+"&time="+hoursleft+":"+minutesLeft+":"+secondsLeft+"&score="+realNumber+"&attempt=1&complete="+complete;
     
-    alert(requestUrl);
+   // alert(requestUrl);
    
     try
         {
@@ -787,10 +855,13 @@ function parseData(asyncRequest){
       
       $("#coursesPg").html(stri);
       
-     
+       try{
       for(var c = 0;  c < paginationTracker.length; c++){
           document.getElementById(paginationTracker[c]).className = document.getElementById(paginationTracker[c]).className + " red";
       }
+  }catch(exc){
+    console.log(exc)  ;
+  }
         $(".adewale").click(function (e){
             $(".adewale").removeClass("active");
             
@@ -830,8 +901,10 @@ function parseData(asyncRequest){
      
      $(".icheckbox_flat-green").click(function (e){
          
-         if(paginationTracker.indexOf(localStorage.getItem("pgclicked")) === -1)
+         if(paginationTracker.indexOf(localStorage.getItem("pgclicked")) === -1){
              paginationTracker.push(localStorage.getItem("pgclicked"));
+            
+         }
       
        document.getElementById(localStorage.getItem("pgclicked")).className = document.getElementById(localStorage.getItem("pgclicked")).className +" red";
        
@@ -888,8 +961,10 @@ function parseData(asyncRequest){
      table.innerHTML = join;
     
  $(".icheckbox_flat-green").click(function (e){
-       if(paginationTracker.indexOf("pg0") === -1)
-             paginationTracker.push("lpg0");
+       if(paginationTracker.indexOf("pg0") === -1){
+             paginationTracker.push("pg0");
+             
+     }
          
       var loopThrough = subjectsRegister.toString().split(",");
        document.getElementById("pg0").className = document.getElementById("pg0").className +" red";
@@ -989,19 +1064,24 @@ var data = JSON.parse(asyncRequest.responseText);//  .parse(asyncRequest.respons
   if(data.indexOf("Succesfully") !== -1){
       var string = "";
             document.getElementById("courseReg").className = document.getElementById("courseReg").className + " disabled";
-      if(subjectsRegister.indexOf(",") != -1){
+      if(subjectsRegister.indexOf(",") !== -1){
          var sep = subjectsRegister.split(",");
          for(var i = 0; i < sep.length; i++)
-          string+="<p>"+sep[i]+"</p>"; 
+          string+="<p>"+sep[i]+"<p>"; 
        $("#content").html("You have successfully registered \n "+string);
+        
       
-     
       }
-        $("#content").html("You have successfully registered \n <p>"+subjectsRegister+"</p>");
+      var string="";
+         var sep = subjectsRegister.toString().split(",");
+         
+         for(var i = 0; i < sep.length; i++)
+          string+="<p>"+sep[i]+"<p>"; 
+        $("#content").html("You have successfully registered \n "+string);
      
       $("#complete").modal();
       subjectsRegister = [];
-                parseValue();
+                parseValue(localStorage.getItem("detail"));
   }
   else{
       alert("Something went wrong with your course registration");
@@ -1013,7 +1093,7 @@ var data = JSON.parse(asyncRequest.responseText);//  .parse(asyncRequest.respons
   }
   
 function showP(){
-    
+   
     var requestUrl = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/course/information?status=3&matric="+localStorage.getItem("user");
     
      
@@ -1519,7 +1599,8 @@ function parseDatas(asyncRequest){
 
 }
 
-
+ 
+ 
 function showTabs(){
     presentQuestions = 0;
     presentNumbers = 0;

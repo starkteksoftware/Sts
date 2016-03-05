@@ -5,7 +5,11 @@
 
 var totalPresentStudents =[];
 function start(){
+    try{
     arrange();
+    }catch(exc){
+        console.log(exc);
+    }
 }
 
 function arrange(){

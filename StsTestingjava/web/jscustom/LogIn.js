@@ -16,7 +16,7 @@ var URL ="";
   
 function start(){
    
-       
+       try{
    URL = location.protocol +"//"+ location.host;
  locations =  location.protocol;
      hide = document.getElementById('invalid');
@@ -132,6 +132,10 @@ document.getElementById("create").addEventListener("click",create,false);
       })
   });
 
+       }
+       catch(exc){
+         console.log(exc);  
+       }
 }
 
 function verify(){
@@ -247,7 +251,7 @@ function parseLog( asyncRequest )
     //    alert(data);
         $("#next").hide();
  
-
+try{
 if(data == "true"){
  document.getElementById("forms").action = getAction();
   document.getElementById("forms").submit();
@@ -260,7 +264,10 @@ else{
         
 }
 
-
+}
+catch(exc){
+  console.log(exc)  
+}
 
  // display data on the page
  } // end if

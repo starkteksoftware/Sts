@@ -85,6 +85,10 @@
         <error-code>404</error-code>
         <location>/Nofile.html</location>
     </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Nofile.html</location>
+    </error-page>
     <servlet-mapping>
         <servlet-name>QuetionSetter</servlet-name>
         <url-pattern>/QuetionSetter</url-pattern>

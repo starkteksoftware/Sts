@@ -46,7 +46,7 @@ import javax.ws.rs.QueryParam;
  * @author bola odesile
  */
 @Path("exam")
-@RequestScoped
+
 
 
 

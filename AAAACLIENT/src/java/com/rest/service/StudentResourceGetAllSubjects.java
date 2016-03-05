@@ -64,7 +64,7 @@ public class StudentResourceGetAllSubjects {
           }
           finally{
               try{
-                  
+               
               if(connection!= null){
                   connection.close();
               }

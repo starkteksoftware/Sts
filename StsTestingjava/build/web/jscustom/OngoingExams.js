@@ -68,7 +68,7 @@ var logins = "/AAAACLIENT/webresources/exam/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b"
  if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 )
  {
  // convert the JSON string to an Object
-
+ try{
  var data = JSON.parse(asyncRequest.responseText);
   str = data;
    
@@ -115,7 +115,10 @@ var logins = "/AAAACLIENT/webresources/exam/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b"
      arrange();
  }
     // connect();   
-   
+ }
+ catch(exc){
+     console.log(exc)
+ }
         
  // display data on the page
  } // end if
@@ -125,6 +128,7 @@ var logins = "/AAAACLIENT/webresources/exam/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b"
  
  
   function specialSubmitWizardOngoing(){
+     
       console.log("can be called from jquerry smart wizard line 114");
          
          var firstName = $("#firstNameF").val();
@@ -231,13 +235,13 @@ var logins = "/AAAACLIENT/webresources/exam/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b"
       }
   }
   else{
-       new PNotify({
+      /*  new PNotify({
                                 title: 'Update Admin',
                                 text: 'Update admin not successful',
                                 type: 'error'
                             });
-                            return;
-  }
+                            return; */
+  } 
   }
          
          
@@ -984,11 +988,11 @@ $("#next").hide("slow");
          join+="<td>"+split[i]+"</td>"; 
        }
    
-         join+="<td> <a href='ViewStudentProfile.html?matric='"+split[0]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
+         join+="<td> <a href='ViewStudentProfile.html?matric="+split[3]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
-       
+        
          
      var addition ="<tr>";
   
@@ -1074,8 +1078,8 @@ $("#next").hide("slow");
          join+="<td>"+split[i]+"</td>"; 
        }
    
-          join+="<td> <a href='ViewStudentProfile.html?matric='"+split[0]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
-      
+         join+="<td> <a href='ViewStudentProfile.html?matric="+split[3]+"' ><i class='fa fa-user'></i> </a> "+"</td>"; 
+       
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
@@ -1502,6 +1506,7 @@ function parseData( asyncRequest ){
     
  }
  function arrangeOff(){
+     try{
         totalActiveSubjects = [];
         signIn();
         examIncrease();
@@ -1746,7 +1751,7 @@ function parseData( asyncRequest ){
       
        
   // join+= '<td class="a-center"> <a title="View '+ids+'" " href="OpenedExam.html"  data-hint="View Exam Details"    > <i  id="'+ids+'"  data-hint="View Exam Details"  ></i></a></td>';
-   join +='<td><a  class="btn btn-default send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a></td>';
+   join +='<td><a id="'+ids+'..." class="btn btn-default send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a></td>';
      var addition ="<tr>";
    
      addition+=join;
@@ -1860,7 +1865,7 @@ function parseData( asyncRequest ){
       
        
   // join+= '<td class="a-center"> <a title="View '+ids+'" " href="OpenedExam.html"  data-hint="View Exam Details"    > <i  id="'+ids+'"  data-hint="View Exam Details"  ></i></a></td>';
-   join +='<td><a  class="btn btn-default send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a></td>';
+   join +='<td><a id="'+ids+'..." class="btn btn-default send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a></td>';
      var addition ="<tr>";
    
      addition+=join;
@@ -1928,7 +1933,10 @@ function parseData( asyncRequest ){
      */
        localStorage.setItem("RegStudents",totalActiveSubjects);
       
-  
+     }
+     catch(exc){
+         console.log(exc);
+     }
        
 
  }
@@ -1963,7 +1971,7 @@ function parseData( asyncRequest ){
      var sec = str.split("#");
      
  
-     alert(sec);
+    // alert(sec);
      
      
      
@@ -2643,7 +2651,9 @@ function clicked(e){
     
    if(e.target.tagName === "I"){
       
+      
        if(e.target.className === "fa fa-arrow-right"){
+          
        var second = e.target.id;
         localStorage.setItem("ExamName",second);
         window.location.assign("OpenedExam.html");
@@ -2655,7 +2665,7 @@ function clicked(e){
    if(e.target.className.indexOf("send to open ") !== -1){
         var second = e.target.id;
         
-       localStorage.setItem("ExamName",second);
+       localStorage.setItem("ExamName",second.split("...")[0]);
        window.location.assign("OpenedExam.html");
         
    }

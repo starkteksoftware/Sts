@@ -222,6 +222,8 @@ public class StudentResourceDashBoardHome {
            }
            finally{
                try{
+                   
+                   
                  if(connection!= null) {
                      connection.close();
                  } 

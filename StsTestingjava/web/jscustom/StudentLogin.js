@@ -10,6 +10,7 @@ var user;
 var password;
 var URL = "";
 function start(){
+    try{
    localStorage.clear();
    URL = location.protocol +"//"+ location.host;
     hide = document.getElementById('invalid');
@@ -27,6 +28,10 @@ function start(){
   $("#next").hide();
     document.getElementById("logger").addEventListener("click",verify,false);
     document.getElementById("createAccount").addEventListener("click",create,false);
+    }
+    catch(exc){
+     console.log(exc)   
+    }
 }
 
 function create(){
@@ -123,6 +128,10 @@ function parseData(asyncRequest){
  //var data = JSON.parse(asyncRequest.responseText);
 
  var data = JSON.parse(asyncRequest.responseText);
+   $("#nexts").hide();
+    $("#next").hide();
+         
+         
  
  if(data.indexOf("matric") !==  -1){
      var sep = data.split(":");
@@ -133,7 +142,7 @@ function parseData(asyncRequest){
          }
      
  }else{
-      $("#statTexts").html("Error Signing up, please contact administrator");
+      $("#statTexts").html("Error Signing up, please contact administrator or use a different email");
         $("#statTexts").show();
  }
  }
@@ -203,6 +212,7 @@ var requestUrl;
     if(matrics !== undefined && passwords !== undefined){
      
      requestUrl = login+"?matric="+matrics+"&password="+passwords;
+     localStorage.setItem("user", matrics);
      
     }
     else{
@@ -302,6 +312,12 @@ if(data === "false"){
  
  // display data on the page
  } // end if
+ else{
+       $("#nexts").hide();
+      $("#next").hide();
+         
+         
+ }
  } //
 
 

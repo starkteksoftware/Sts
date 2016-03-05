@@ -18,7 +18,7 @@ import javax.activation.*;
 public class StudentResourceMailSendReciever {
     
      
-    public  static void mailsend( String password, String email,String subject ) throws MessagingException {
+    public  static void mailsend( String password, String email,String subject,String text ) throws MessagingException {
 
          
 
@@ -57,7 +57,7 @@ System.out.println(email);
     toAddress[0] = new InternetAddress(email);   
     message.addRecipient(Message.RecipientType.TO, toAddress[0]);
     message.setSubject(subject);
-    message.setText("Your password is "+password);
+    message.setText(text+password);
     Transport transport = session.getTransport("smtp");
     transport.connect(host, from, pass);
     transport.sendMessage(message, message.getAllRecipients());

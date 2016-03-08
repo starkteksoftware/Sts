@@ -13,6 +13,7 @@ var minutesLeft = 0;
 var secondsLeft = 0;
 var hoursleft = 0;
 var paginationTracker = [];
+var progressBar = [];
 
 
 
@@ -47,7 +48,7 @@ function start(){
             })
             
             $("#fullImage").click(function (){
-            
+             
                  showP();
                  
                 
@@ -66,7 +67,9 @@ function start(){
             });
             
              $("#startNewTests").click(function (){
+                 
                 $("#viewP").trigger("click");
+                
                 
             });
             
@@ -127,6 +130,9 @@ if( data === "false"){
     }
     catch(exc){
         console.log(exc);
+         alert("Please contact administrator");
+    window.location.assign("candidateLog.html");
+    
     }
 }
 
@@ -227,11 +233,11 @@ function parseLog( asyncRequest )
             if(c== 0){
                 c=1;
             }
-                 for( c; c < val; c++){
+            $("#paginationShowing").html("Showing "+ c +" - "+val +" of "+(lengths -1) +" entries");
+                 for( c; c <= val; c++){
         
         
-      var ids="";   
-      var detail="";
+       
         if(sec[c] === undefined){
             break;
         }
@@ -241,55 +247,17 @@ function parseLog( asyncRequest )
      var join = "";
    
    
+      join+="<td>"+c+"</td><td style='cursor:pointer' title='Start Exam' class='start-exams ' id='"+split[0]+"***'>"+split[0]+" </td> <td>"+split[1]+" </td>  <td> "+split[2]+"  </td>  <td> "+split[3]+" </td>    <td> "+split[4]+" </td>";
      
-     
-       for( var i = 0; i < split.length; i++){
-           //index values
-           if(i == 0){
-              
-               join+="<td>"+c+"</td>";
-               
-              
-            //  totalS++;
-               
-           }
-           
-        
-           
-           ids+=split[i]+",";
-           
-           if(i == 3){
-             //detail = split[i];
-             
-           }
-           
-        
-           
-         join+="<td>"+split[i]+"</td>"; 
-       }
+      
    
-            join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
-       
-      // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
- 
-       
-         
-     var addition ="<tr>";
-  
-     addition+=join;
-      addition+="</tr>";
+    join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
+    var addition ="<tr>";addition+=join;addition+="</tr>";
     
      // totalStudents.push(addition+"*split");
-       addUp+=addition;
-      
-        
-         
-     }
-     
-  
-     
-     
-     var copy;
+        addUp+=addition;
+      }
+   var copy = "";
      if( addUp.indexOf("undefined") !== -1){
      var addSplit = addUp.split("undefined");
  
@@ -318,13 +286,24 @@ function parseLog( asyncRequest )
  else{
      table.innerHTML = addUp;
  }
+ 
+      $(".start-exams").click(function (e){
+          
+           localStorage.setItem("activeExam", e.target.id.split("***")[0]);
+           $("#det").html("Proceed to  "+e.target.id.split("***")[0]+" ?")
+          $("#startExamPop").modal();
+          $("#start").click(function (){
+              setExam(e.target.id.split("***")[0]);
+          });
+       }) ;
+      
      $(".fa-key").click(function (e){
          
        localStorage.setItem("activeExam",e.target.id);
             $("#det").html("Proceed to  "+e.target.id+" ?");
           $("#startExamPop").modal();
           $("#start").click(function (){
-              setExam(e);;
+              setExam(e.target.id);;
           });
         // setExam(e);
          });
@@ -356,7 +335,9 @@ function parseLog( asyncRequest )
        });
       var addUp="";
         var val = nums * 10;
-     for( var c = nums; c < val; c++){
+         $("#paginationShowing").html("Showing "+ nums +" - "+val +" of "+(lengths -1) +" entries");
+       
+     for( var c = nums; c <= val; c++){
        
       var ids="";   
     
@@ -369,32 +350,8 @@ function parseLog( asyncRequest )
  }
        //split is the current detail 
       var join = "";
-   for( var i = 0; i < split.length; i++){
-           //index values
-           if(i == 0){
-              
-               join+="<td>"+c+"</td>";
-               
-               
-            //  totalS++;
-               
-           }
-           
-         
-           
-           ids+=split[i]+",";
-           
-           if(i == 3){
-             //detail = split[i];
-             
-           }
-           
-        
-           
-         join+="<td>"+split[i]+"</td>"; 
-       }
-     
-            join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
+     join+="<td>"+c+"</td> <td style='cursor:pointer' title='Start Exam'  class='start-exams' id='"+split[0]+"***'>"+split[0]+" </td> <td>"+split[1]+" </td>  <td> "+split[2]+"  </td>  <td> "+split[3]+" </td>    <td> "+split[4]+" </td>";
+     join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
        
       // join+= "<td> <a href='#' title='Delete student and all details' onclick='deleted("+detail+");' data-hint='Delete Students' class='fg-darkRed'><i id='"+ids+"' class='icon-cancel'></i></a>&nbsp;<a title='View student profile' href='ViewStudentProfile.html'data-hint='Delete Students' class='fg-darkGreen'><i id='"+ids+"' class='icon-eye'></i></a></td>";
  
@@ -411,10 +368,6 @@ function parseLog( asyncRequest )
         
          
      }
-     
-  
-     
-     
      var copy;
      var addSplit = addUp.split("undefined");
    for(var ii =0; ii < addSplit.length; ii++){
@@ -431,7 +384,7 @@ function parseLog( asyncRequest )
      
      
      
-     
+    
    
      
     
@@ -439,7 +392,18 @@ function parseLog( asyncRequest )
      
      table.innerHTML = splitAgain[1];
      
-         
+      
+            
+       $(".start-exams").click(function (e){
+          
+           localStorage.setItem("activeExam", e.target.id.split("***")[0]);
+           $("#det").html("Proceed to  "+e.target.id.split("***")[0]+" ?")
+          $("#startExamPop").modal();
+          $("#start").click(function (){
+              setExam(e.target.id.split("***")[0]);
+          });
+       }) ;
+       
          
       
       $(".fa-key").click(function (e){
@@ -447,7 +411,7 @@ function parseLog( asyncRequest )
             $("#det").html("Proceed to  "+e.target.id+" ?")
           $("#startExamPop").modal();
           $("#start").click(function (){
-              setExam(e);;
+              setExam(e.target.id);;
           });
         //  
          })
@@ -541,13 +505,13 @@ function singleAnswer(questions){
            // If the question has been answered
            if(totalAnswers[questionCount] !== 0){
               if(i == totalAnswers[questionCount].answer) 
-                    keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'" checked class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
-              else  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+                    keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'" checked class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+              else  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
              
           } //if the question has not been answered
          
             else{
-                     keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+                     keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
           }
          
       }
@@ -593,14 +557,15 @@ function singleAnswer(questions){
            // If the question has been answered
            if(totalAnswers[questionCount] !== 0){
               if(i == totalAnswers[questionCount].answer) 
-                  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'" checked class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
-              else  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+                  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'" checked class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+              else  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
              
           } //if the question has not been answered
            
             
             else{
-                     keepOptions +='<tr><td>  <input name="starks" type="radio" id="'+i+'" style=""  class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+                
+                     keepOptions +='<tr><td>  <input name="starks" type="radio" id="'+i+'" style=""  class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
           }
           
       }
@@ -637,17 +602,17 @@ function singleAnswer(questions){
            if(totalAnswers[questionCount] !== 0){
               if(i == totalAnswers[questionCount].answer) 
                    
-                    keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'" checked class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
-              else  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+                    keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'" checked class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+              else  keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
              
           } //if the question has not been answered
          
             else{
-                     keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
+                     keepOptions +='<tr><td> <input name="starks" type="radio" id="'+i+'"  class="starks"/>  </td>    <td id="'+i+'.." class="starktech"> '+presentQuestion[i].substring(6,presentQuestion[i].length)+ '</td></tr>';
           }
          
       }
-      
+       
       document.getElementById("options").innerHTML = keepOptions;
       $("#questionsSet").html(presentQuestion[0]);
        
@@ -684,6 +649,7 @@ $("#postExam").click(function (e){
                 }
                 else{
                     complete = false;
+                    
                 }
             string +='<div style="border-top:2px solid blue; margin-top:30px;"></div><p style="color:blue;">('+c+').<b>'+split[i]+'</b></p>';
         
@@ -715,7 +681,7 @@ $("#postExam").click(function (e){
                         string += "  <p style=' '><input type='radio'   id='"+i+"' class='margin5'/>"+split[i].substring(6,split[i].length)+"</p> ";                         
                      }
                     else{
-                       string += "  <p style=' background-color:green;'><input type='radio' checked  id='"+i+"' class='margin5'/>"+split[i].substring(6,split[i].length)+"</p> ";                         
+                       string += "  <p style=' background-color:green;'><input type='radio'   id='"+i+"' class='margin5'/>"+split[i].substring(6,split[i].length)+"</p> ";                         
                      }
                 }
             }
@@ -731,8 +697,13 @@ $("#postExam").click(function (e){
     var realNumber =  (percentage * 100) / (question.length -1);
     var st = "<p>Your percentage is "+realNumber +" % !!! ";
     var body = document.getElementById("resultsheet");
-    body.innerHTML += st;
-    body.innerHTML += string;
+    
+    $("#takeExam").show();
+    $("#status").hide();
+    $("#subName").html();
+    
+    
+    body.innerHTML = st+ string;
     
    $("#resultShow").modal();
      
@@ -873,7 +844,8 @@ function parseData(asyncRequest){
                    var c = val - 5;
                     if(c== 0)
                         c=1;
-                    
+                    $("#paginationShowingReg").html("Showing "+ c +" - "+val +" of "+(length - 1) +" entries");
+    
                      for( c; c < val; c++){
                           if(sec[c] === undefined)
                                 break;
@@ -937,10 +909,16 @@ function parseData(asyncRequest){
       
       var join = "";
       var val = nums * 5;
-     for( var c = nums; c < val; c++){
-
+        $("#paginationShowingReg").html("Showing "+ nums +" - "+val +" of "+(length - 1) +" entries");
+    
+     for( var c = nums; c <= val; c++){
+            try{
        var split = sec[c].split(",");
-       
+   }
+   catch(exc){
+       console.log(exc);
+       continue;
+   }
      // join+="<tr><td>"+c+"</td><td>"+split[0]+"</td><td>"+split[1]+"</td><td>"+split[2]+"</td><td>"+split[3]+"</td><td><input type='checkbox' id='"+split[0]+"' class='icheckbox_flat-green'  /></td></tr> ";
          if(subjectsRegister.indexOf(split[0]) != -1){
          if(split[0] === subjectsRegister[subjectsRegister.indexOf(split[0])]){
@@ -956,7 +934,7 @@ function parseData(asyncRequest){
         }
          
    
-    
+      
      
      table.innerHTML = join;
     
@@ -1010,13 +988,54 @@ function parseData(asyncRequest){
    
 function clic(e){
    
+    
+      if(e.target.className == "starktech"){
+          $("#"+e.target.id.split("..")[0]).trigger("click");
+          return;
+      }
      
       if(e.target.className == "starks"){
-          
+          $("#prog").show();
+         if(totalAnswers[presentNumbers] === 0){
+             progressBar.push(presentNumbers);
+             var percentage =  (progressBar.length/ (totalAnswers.length - 1)) * 100 ;
+             if(percentage === 100){
+                  $("#postExam").show();
+                  
+             }
+             
+             if(percentage > 60  ){
+             document.getElementById("progs").className = " progress-bar bg-green";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");
+             }
+             else if(percentage > 50  ){
+              document.getElementById("progs").className = " progress-bar bg-blue";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+             else if(percentage > 40 ){
+              document.getElementById("progs").className = " progress-bar bg-orange";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+              
+             else{
+             
+             document.getElementById("progs").className = " progress-bar bg-red";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+             
+             
+             
+         }
+         else{
+             
+         }
+         
          var presentAnswer = new answer(presentQuestions,presentNumbers,e.target.id);
          totalAnswers[presentNumbers] = presentAnswer;
          document.getElementById(presentNumbers+".").className = document.getElementById(presentNumbers+".").className+" red";
-      
+         
+        
+        
       }
       
       
@@ -1100,35 +1119,15 @@ function showP(){
     
      try
  {
-     var asyncRequest = new XMLHttpRequest(); // create request
-
- // set up callback function and store it
- asyncRequest.addEventListener("readystatechange",
- function() { 
-            parseLog(asyncRequest);  //callBack( asyncRequest );
- }, false);
      
-    asyncRequest.open( "GET", requestUrl, true );
- asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8" );
- asyncRequest.send(); // send request
- 
-
- } // end try
- catch ( exception )
- {
- console.log(exception);
- 
- } // end catch
- 
-
+     
 function parseLog( asyncRequest )
  {
    
  // if request has completed successfully, process the response
- if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 )
- {
+ if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 ){
  // convert the JSON string to an Object
-
+try{
  var data = JSON.parse(asyncRequest.responseText);
  var datas = data.split("#");
          var seperate = datas[1].split(",");
@@ -1182,11 +1181,7 @@ function parseLog( asyncRequest )
  $("#profile").modal();
  
  
- 
- document.getElementById('LClick').addEventListener('change', handleFileSelectAdmin, false);
         
-        
-         
              function handleFileSelectAdmin(evt) {
     var files = evt.target.files; // FileList object
 
@@ -1219,8 +1214,44 @@ function parseLog( asyncRequest )
     }
   }
    
+ 
+ 
+ document.getElementById('LClick').addEventListener('change', handleFileSelectAdmin, false);
+        
+        
+  
+  }
+  catch(exc){
+     console.log(exc);
  }
  }
+
+ 
+ }
+ 
+     
+     
+     var asyncRequest = new XMLHttpRequest(); // create request
+
+ // set up callback function and store it
+ asyncRequest.addEventListener("readystatechange",
+ function() { 
+            parseLog(asyncRequest);  //callBack( asyncRequest );
+ }, false);
+     
+    asyncRequest.open( "GET", requestUrl, true );
+ asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8" );
+ asyncRequest.send(); // send request
+ 
+
+ } // end try
+ catch ( exception )
+ {
+ console.log(exception);
+ 
+ } // end catch
+ 
+
     
     
     
@@ -1228,6 +1259,7 @@ function parseLog( asyncRequest )
 
 
 function updateCandidate(){
+    try{
       var firstName = $("#firstNameF").val();
          var lastName = $("#lastNameF").val();
          
@@ -1285,6 +1317,44 @@ function updateCandidate(){
                         
    try
  {
+     
+     
+      function parse(asyncRequest ){
+ if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 )
+ {
+ var data = JSON.parse(asyncRequest.responseText);
+ 
+ 
+  if(data.indexOf("Update Successfull") !== -1){
+  
+                 new PNotify({
+                                title: 'Update Candidate',
+                                text: 'Update Candidate Succes',
+                                type: 'success'
+                            });
+                            return;
+               document.getElementById("urlP").value=   sessionStorage.getItem("URL")+"/StsTestingjava/SectionPage.html";
+               document.getElementById("nameP").value = localStorage.getItem("user");
+                    function getAction(){
+   
+    
+                return sessionStorage.getItem("URL")+"/AAAACLIENT/FormServlet";
+    
+}
+               document.getElementById("formTutor").action = getAction();
+               
+            
+               document.getElementById("formTutor").submit();
+               
+   
+
+      }
+  }
+  else{
+     
+  }
+  }
+  
      var asyncRequest = new XMLHttpRequest(); // create request
 
  // set up callback function and store it
@@ -1305,45 +1375,19 @@ function updateCandidate(){
  
  } // end catch
  
-  function parse(asyncRequest ){
- if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 )
- {
- var data = JSON.parse(asyncRequest.responseText);
  
- 
-  if(data.indexOf("Update Successfull") !== -1){
-  
-               document.getElementById("urlP").value=   sessionStorage.getItem("URL")+"/StsTestingjava/SectionPage.html";
-               document.getElementById("nameP").value = localStorage.getItem("user");
-               document.getElementById("formTutor").action = getAction();
-               
-                 function getAction(){
-   
-    
-                return sessionStorage.getItem("URL")+"/AAAACLIENT/FormServlet";
-    
 }
-               document.getElementById("formTutor").submit();
-               
-   
 
-      }
-  }
-  else{
-       new PNotify({
-                                title: 'Update Admin',
-                                text: 'Update admin not successful',
-                                type: 'error'
-                            });
-                            return;
-  }
-  }
+catch(exc){
+    console.log(exc);
+}
+
 }
 
 function setExam(e){
     
      
-          var requestUrl = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/exam/name?question="+e.target.id;
+          var requestUrl = sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/exam/name?question="+e;
 
         //+ methodAndArguments;
         
@@ -1351,25 +1395,7 @@ function setExam(e){
     
    try
  {
-     var asyncRequest = new XMLHttpRequest(); // create request
-
- // set up callback function and store it
- asyncRequest.addEventListener("readystatechange",
- function() { 
-            parseData(asyncRequest);  //callBack( asyncRequest );
- }, false);
-     
-    asyncRequest.open( "GET", requestUrl, true );
- asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8" );
- asyncRequest.send(); // send request
- 
-
- } // end try
- catch ( exception ){
- console.log(exception);
- } // end catch
- 
- 
+      
 function parseData( asyncRequest ){
    
  // if request has completed successfully, process the response
@@ -1407,6 +1433,7 @@ function parseData( asyncRequest ){
         
           $("#tabHide").hide();
           $("#studentPg").hide();
+          $("#paginationShowing").hide();
     
           $("#startExaminationS").show();
     
@@ -1551,12 +1578,34 @@ var secId = document.getElementById("seconds");
  }
  
 }
+     
+     
+     
+     var asyncRequest = new XMLHttpRequest(); // create request
+
+ // set up callback function and store it
+ asyncRequest.addEventListener("readystatechange",
+ function() { 
+            parseData(asyncRequest);  //callBack( asyncRequest );
+ }, false);
+     
+    asyncRequest.open( "GET", requestUrl, true );
+ asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8" );
+ asyncRequest.send(); // send request
+ 
+
+ } // end try
+ catch ( exception ){
+ console.log(exception);
+ } // end catch
+ 
+
           
       
     
 }
 
-
+ 
  function ClickResponse(exam,handler){
      
  }

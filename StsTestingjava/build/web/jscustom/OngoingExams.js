@@ -41,7 +41,7 @@ var logins = "/AAAACLIENT/webresources/exam/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b/b"
  function() { 
             parseLogs(asyncRequest);  //callBack( asyncRequest );
  }, false);
-     
+       
     asyncRequest.open( "GET", requestUrl, true );
  asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8" );
  asyncRequest.send(); // send request
@@ -892,7 +892,7 @@ if ( asyncRequest.readyState === 4 && asyncRequest.status === 200 )
  } // end try
  catch ( exception )
  {
- alert ( "Request Failed" );
+ console.log( exception);
  } // end catch
  
 
@@ -1751,9 +1751,9 @@ function parseData( asyncRequest ){
       
        
   // join+= '<td class="a-center"> <a title="View '+ids+'" " href="OpenedExam.html"  data-hint="View Exam Details"    > <i  id="'+ids+'"  data-hint="View Exam Details"  ></i></a></td>';
-   join +='<td><a id="'+ids+'..." class="btn btn-default send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a></td>';
+   join +='<td>     <a id="'+ids+'..." class="btn btn-primary send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a>   <a id="'+ids+'___" class="btn btn-danger unregister " title="Unregister '+ids+'" " href="#"  data-hint="Unregister"    > <i  id="'+ids+'***" class="fa fa-remove unregister"  data-hint="Unregister exam"  ></i></a>  </td>';
      var addition ="<tr>";
-   
+    
      addition+=join;
       addition+="</tr>";
        addUp+=addition;
@@ -1865,8 +1865,8 @@ function parseData( asyncRequest ){
       
        
   // join+= '<td class="a-center"> <a title="View '+ids+'" " href="OpenedExam.html"  data-hint="View Exam Details"    > <i  id="'+ids+'"  data-hint="View Exam Details"  ></i></a></td>';
-   join +='<td><a id="'+ids+'..." class="btn btn-default send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a></td>';
-     var addition ="<tr>";
+  join +='<td>     <a id="'+ids+'..." class="btn btn-primary send to open " title="View '+ids+'" " href="#"  data-hint="View Exam Details"    > <i  id="'+ids+'" class="fa fa-arrow-right"  data-hint="View Exam Details"  ></i></a>   <a id="'+ids+'___" class="btn btn-danger unregister " title="Unregister '+ids+'" " href="#"  data-hint="Unregister"    > <i  id="'+ids+'***" class="fa fa-remove unregister"  data-hint="Unregister exam"  ></i></a>  </td>';
+      var addition ="<tr>";
    
      addition+=join;
       addition+="</tr>";
@@ -1973,7 +1973,7 @@ function parseData( asyncRequest ){
  
     // alert(sec);
      
-     
+      
      
      //
      
@@ -2508,7 +2508,7 @@ function onMessage(evt) {
   
 var arraypv = evt.data;
 
-console.log(arraypv);
+
 
 if(arraypv.indexOf("connectionStatus:") != -1){
    var sep = evt.data.toString().split(":");
@@ -2649,6 +2649,7 @@ function requestSubmited(){
 
 function clicked(e){
     
+   
    if(e.target.tagName === "I"){
       
       
@@ -2658,7 +2659,27 @@ function clicked(e){
         localStorage.setItem("ExamName",second);
         window.location.assign("OpenedExam.html");
     }
+     if(e.target.className.indexOf("unregister") !== -1){
+          if(!confirm("Are you sure you want to unregister "+e.target.id.split("***")[0]))
+              return;
+           $.ajax({
+
+            url: sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/course/information?status=8&subjects="+e.target.id.toString().split("***")[0], 
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
         
+            },
+            error: function(error) {
+              
+                console.log(error);
+            }
+        });
+     
+         return;
+        }
+    
+       
    }
    
    
@@ -2669,6 +2690,29 @@ function clicked(e){
        window.location.assign("OpenedExam.html");
         
    }
+   
+    if(e.target.className.indexOf("unregister") !== -1){
+        if(!confirm("Are you sure you want to unregister "+e.target.id.split("___")[0]))
+              return;
+           $.ajax({
+
+            url: sessionStorage.getItem("URL")+"/AAAACLIENT/webresources/student/course/information?status=8&subjects="+e.target.id.toString().split("__")[0], 
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+        
+            },
+            error: function(error) {
+              
+                console.log(error);
+                
+            }
+        });
+     }
+   
+  
+   
+   
    
    
   

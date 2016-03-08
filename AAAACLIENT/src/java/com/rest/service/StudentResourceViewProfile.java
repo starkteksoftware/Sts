@@ -35,8 +35,8 @@ public class StudentResourceViewProfile {
              connection = ds.getConnection();
              getBioData = connection.prepareStatement("SELECT lastname, firstname, email, comment from candidatedata where matric= ?");
              getResult = connection.prepareStatement("SELECT * from results where matric =? ORDER BY dateyear DESC");
-             getRanking = connection.prepareStatement("SELECT matric from results where courseId = ? ORDER BY score DESC, time ASC  ");
-             
+             getRanking = connection.prepareStatement("SELECT matric from results where courseId = ? ORDER BY score DESC, time DESC  ");
+              
              
              getBioData.setString(1, matric);
              results = getBioData.executeQuery();

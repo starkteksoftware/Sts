@@ -35,63 +35,116 @@ public class ImageRetriever extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-           try {
-    String [] id =  request.getQueryString().split("=");
-    System.out.print(id[1]);
+        try {
+            String replaceAll =  request.getQueryString().split("=")[1].replace("%20"," ");
+            System.out.println(replaceAll +" is the file requested for");
+            File files;
+            String directory = System.getProperty("user.home")+System.getProperty("file.separator")+"Images"+System.getProperty("file.separator");
     
-    String replaceAll = id[1].replaceAll("%20", " ");   
-    
-        File files = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"Images"+replaceAll+".jpg");
-      if(files.exists()){
-        FileInputStream input = new FileInputStream(files);
-        InputStream ins = input;
-       
-       
-          int read = 0;
-       final byte[] bytes = new byte[1024];
- OutputStream out = response.getOutputStream();
-        while ((read = ins.read(bytes)) != -1) {
-       out.write(bytes, 0, read);
-        
-           
-        }
-       
-        }
+            files = new File(directory+replaceAll);
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+            files = new File(directory+replaceAll+".jpg");
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+            files = new File(directory+replaceAll+".jpeg");
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+            files = new File(directory+replaceAll+".png");
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+                
+                files = new File(directory+replaceAll+".gif");
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+                files = new File(directory+replaceAll+".mp3");
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+                files = new File(directory+replaceAll+".mp4");
+                if(files.exists()){
+                    FileInputStream input = new FileInputStream(files);
+                    InputStream ins = input;
+                    int read;
+                    final byte[] bytes = new byte[1024];
+                    OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                          out.write(bytes, 0, read);
+                     }
+                }
+      
         else{
-          
-      //  String replaceAlls = id[1].replaceAll("20", " ");
-            File filess = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"Images"+System.getProperty("file.separator")+replaceAll+".jpg");
+        File filess = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"Images"+System.getProperty("file.separator")+replaceAll+".jpg");
             System.err.println(filess.getName());
                if(filess.exists()){
-        FileInputStream input = new FileInputStream(filess);
-        InputStream ins = input;
+               FileInputStream input = new FileInputStream(filess);
+               InputStream ins = input;
+               int read = 0;
+               final byte[] bytes = new byte[1024];
+               OutputStream out = response.getOutputStream();
+                    while ((read = ins.read(bytes)) != -1) {
+                                out.write(bytes, 0, read);
+                    }
        
-       
-          int read = 0;
-       final byte[] bytes = new byte[1024];
- OutputStream out = response.getOutputStream();
-        while ((read = ins.read(bytes)) != -1) {
-       out.write(bytes, 0, read);
-       
-       
-           
-        }
-       
-        }
+                    }
                else{
                    File defaultf = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"Images"+System.getProperty("file.separator")+"default.png");
             System.err.println(defaultf.getName());
                if(defaultf.exists()){
-        FileInputStream input = new FileInputStream(defaultf);
-        InputStream ins = input;
-       
-       
-          int read = 0;
-       final byte[] bytes = new byte[1024];
- OutputStream out = response.getOutputStream();
-        while ((read = ins.read(bytes)) != -1) {
-       out.write(bytes, 0, read);
+               FileInputStream input = new FileInputStream(defaultf);
+               InputStream ins = input;
+              int read = 0;
+             final byte[] bytes = new byte[1024];
+               OutputStream out = response.getOutputStream();
+                 while ((read = ins.read(bytes)) != -1) {
+                   out.write(bytes, 0, read);
        
        
            

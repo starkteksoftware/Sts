@@ -20,26 +20,11 @@ public class Initializer {
      
           
           
-          
-    Exam.ip = InetAddress.getLocalHost().getHostAddress();
+           
+          Exam.ip = InetAddress.getLocalHost().getHostAddress();
             System.out.println("This is the address "+Exam.ip);
             System.out.println("control 0: in Initializer class(method 1)");
-            
-            // if exam has not started
-            if(Exam.started < 1){
-        
-                ClearActiveExam clearData = new ClearActiveExam();
-                clearData.deleteQuery();
-                clearData.delteQueryExecuted();
-                    /* Server server = new Server();
-                     server.doConnect(); */
-             
-                      
-                         
-            }
-            Exam.started = 1;
-         
-            
+          Exam.started = 1;
         }
         catch(UnknownHostException e){
           e.printStackTrace();

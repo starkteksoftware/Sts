@@ -67,11 +67,11 @@ final  static Map<String,Integer> submittedStudents = new HashMap<>();
     
     
   public void getStudentNames(){
-      System.out.println("in this method");
+      System.out.println("in this method Endpoint");
       StringBuilder allCandidates = new StringBuilder();
       Set<String> keys = StartUpClassOngoingExams.studentsRegistered.keySet();
       keys.stream().map((ss) -> {
-          System.out.println(StartUpClassOngoingExams.studentsRegistered.get(ss));
+      
             return ss;
         }).forEach((ss) -> {
             if(!ss.equals(""))
@@ -343,7 +343,7 @@ public static void stillInSessionSuperVisor(String exam){
      
      
      
-       System.out.println(builder.toString());
+      // System.out.println(builder.toString());
        
          for(Session ss : queue){
        if(ss.getUserProperties().containsValue(exam) && ss.getUserProperties().containsKey("Supervisor")){
@@ -373,7 +373,7 @@ public static void sendSubmittedStudentsSupervisor(String exam){
      }
      
      
-       System.out.println(builder.toString());
+     //  System.out.println(builder.toString());
        
          for(Session ss : queue){
        if(ss.getUserProperties().containsValue(exam) && ss.getUserProperties().containsKey("Supervisor")){
@@ -411,7 +411,7 @@ public static void sendActiveAndInactiveStudents(String exam){
      
      
      
-        System.out.println(builder.toString());
+      //  System.out.println(builder.toString());
        
           for(Session ss : queue){
         if(ss.getUserProperties().containsValue(exam) && ss.getUserProperties().containsKey("Supervisor")){
@@ -444,7 +444,7 @@ public static void sendActiveAndInactiveStudents(String exam){
      
      
      
-       System.out.println(builder.toString());
+     //  System.out.println(builder.toString());
        
          for(Session ss : queue){
        if(ss.getUserProperties().containsValue(exam) && ss.getUserProperties().containsKey("Supervisor")){
@@ -464,82 +464,50 @@ public static void sendActiveAndInactiveStudents(String exam){
        StringBuilder builder = new StringBuilder();
        
      Set<String> studentKeys =  totalStudents.keySet();
-     for(String keys : studentKeys){
+     studentKeys.stream().forEach((keys) -> {
          if(presentCandidates.containsKey(keys))
-         builder.append("#").append(keys).append(",").append(totalStudents.get(keys)).append(",").append("active ");
+             builder.append("#").append(keys).append(",").append(totalStudents.get(keys)).append(",").append("active ");
          else  builder.append("#").append(keys).append(",").append(totalStudents.get(keys)).append(",").append("not active ");
-         
-         
-     }
+        });
      
-       System.out.println(builder.toString());
-       
-         for(Session ss : queue){
-       if(ss.getUserProperties().containsKey("Administrator")){
-           if(ss.isOpen()){
-         
-         
-              ss.getAsyncRemote().sendText("PresentStudents*"+builder.toString());
-          
-           }
-        }
-       
-       
-   }
+        //  System.out.println(builder.toString());
+        queue.stream().filter((ss) -> (ss.getUserProperties().containsKey("Administrator"))).filter((ss) -> (ss.isOpen())).forEach((ss) -> {
+            ss.getAsyncRemote().sendText("PresentStudents*"+builder.toString());
+        });
    
    } 
 
  public static void started() {
      
-     for(Session ss : queue){
-       if(ss.getUserProperties().containsKey("Administrator")){
-           if(ss.isOpen()){
-           int count =  students.size();
+     queue.stream().filter((ss) -> (ss.getUserProperties().containsKey("Administrator"))).filter((ss) -> (ss.isOpen())).forEach((ss) -> {
+         int count =  students.size();
          
-              ss.getAsyncRemote().sendText("presentStats:"+String.valueOf(count));
-              
-              
-              
-          
-           }
-        }
-       
-       
-   }
+         ss.getAsyncRemote().sendText("presentStats:"+String.valueOf(count));
+        });
    
  }
  
  public void started2(String subject){
   
-     for(Session ss : queue){
-       if(ss.getUserProperties().containsValue(subject) && ss.getUserProperties().containsKey("Supervisor")){
-           if(ss.isOpen()){
-          
-             
-              ss.getAsyncRemote().sendText("started:"+"1");
-              
-           }
-        }
-       
-       
-   }
+     queue.stream().filter((ss) -> (ss.getUserProperties().containsValue(subject) && ss.getUserProperties().containsKey("Supervisor"))).filter((ss) -> (ss.isOpen())).forEach((ss) -> {
+         ss.getAsyncRemote().sendText("started:"+"1");
+        });
     
  }
  
+  
   public static void ended(String subject){
-   for(Session ss : queue){
-       if(ss.getUserProperties().containsKey("Administrator")){
-           if(ss.isOpen()){
-           int count =  submittedCandidates.size();
-           
-              ss.getAsyncRemote().sendText("submitted:"+String.valueOf(count));
-           }
-       }
-       
-       if(ss.getUserProperties().containsValue(subject) && ss.getUserProperties().containsKey("Supervisor")){
-           ss.getAsyncRemote().sendText("submitted:1"); 
-         }
-   }
+      queue.stream().map((ss) -> {
+          if(ss.getUserProperties().containsKey("Administrator")){
+              if(ss.isOpen()){
+                  int count =  submittedCandidates.size();
+                  
+                  ss.getAsyncRemote().sendText("submitted:"+String.valueOf(count));
+              }
+          }    return ss;
+        }).filter((ss) -> (ss.getUserProperties().containsValue(subject) && ss.getUserProperties().containsKey("Supervisor"))).forEach((ss) -> {
+            ss.getAsyncRemote().sendText("submitted:1");
+        });
    
    
  }

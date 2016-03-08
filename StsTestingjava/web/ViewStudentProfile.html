@@ -11,6 +11,10 @@
     <title>Sts! | </title>
    <style>
         
+       .hov:hover{
+           background-color: #fff;
+       }
+       
      .overlay,
 .overlay-wrapper > .overlay,
  .loading-img,
@@ -428,7 +432,7 @@
                                             </li>
                                         </ul>
 
-                                        <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                                        <a href="SectionPage.html" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Take Exam</a>
                                         <br />
 
                                         <!-- start skills -->
@@ -547,9 +551,11 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 
+     
     <script src="theme/js/bootstrap.min.js"></script>
 
     <!-- chart js -->
+  
     <script src="theme/js/chartjs/chart.min.js"></script>
     <!-- bootstrap progress js -->
     <script src="theme/js/progressbar/bootstrap-progressbar.min.js"></script>
@@ -569,15 +575,15 @@
     <script type="text/javascript" src="theme/js/datepicker/daterangepicker.js"></script>
     <!-- moris js -->
     <script src="theme/js/moris/raphael-min.js"></script>
-    <script src="jscustom/ViewStudentProfile.js"></script>
     <script src="theme/js/moris/morris.js"></script>
+    <script src="jscustom/ViewStudentProfile.js"></script>
     <script>
        
     </script>
+   
     <!-- datepicker -->
     <script type="text/javascript">
         $(document).ready(function () {
-
             var cb = function (start, end, label) {
                 console.log(start.toISOString(), end.toISOString(), label);
                 $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));

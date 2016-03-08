@@ -10,6 +10,13 @@
 
     <title>Sts! | </title>
    <style>
+       .starktech{
+           cursor: pointer;
+       }
+       
+       .starks{
+           cursor: pointer;
+       }
         .list-group-items {
     display: list-item;
 }
@@ -191,7 +198,7 @@
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <img id="smallImage" src="theme/images/user.png" alt="">
-                                    <span id="pName">John Doe</span>
+                                    <span id="pName">User</span>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -245,11 +252,13 @@
                                     
                                     
                                     </div>
+                                    
+                                    <div id="takeExam" style="margin-left:42%; display: none;"><a href="SectionPage.html" class="btn btn-info center">Take Another Exam</a></div>
                                    
-                                    <div id="prog" style="width:20%; display: none;" class="nav navbar-right panel_toolbox">
-                                       <div class=" progress progress_sm project_progress">
-                                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                                                    </div> 
+                                    <div id="prog" style="width:15%; display: none;" class="nav navbar-right panel_toolbox">
+                                       <div  class=" progress progress_sm project_progress">
+                                                        <div id="progs" class="progress-bar bg-green" role="progressbar" data-transitiongoal="0"></div>
+                                                     </div> 
                                     </div>
                                     
                                     
@@ -353,7 +362,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div>
-                                                    <table style="overflow: scroll; height: 300px;"  class="table table-striped responsive-utilities jambo_table">
+                                                    <table style="overflow: scroll; height: 300px;"  class="table table-striped table-hover responsive-utilities jambo_table">
                                         <thead>
                                             <tr class="headings ">
                                                
@@ -387,6 +396,7 @@
                                                 </div>
                                              </div>
                                             <div class="modal-footer">
+                                                <label id="paginationShowingReg" class="left"></label>
                                                 <button type="button" class="btn btn-default" id="closeCourse"  data-dismiss="modal">Close</button>
                                                 <button type="button" data-dismiss="modal" id="courseReg" class=" disabled btn btn-primary">Register Courses</button>
                                             </div>
@@ -609,6 +619,7 @@
                                             <div class="modal-body">
                                              </div>
                                             <div class="modal-footer">
+                                                
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 <button type="button" id="examCreate" class="btn btn-primary">Save changes</button>
                                             </div>
@@ -632,7 +643,7 @@
                        
                        
                         <div> 
-                             <table style="height: 300px; margin: auto; " class="tableflat center">
+                             <table style="height: 300px; margin: auto; border: none; " class="tableflat  jambo_table ">
                                 
                             <tbody id="options">
                              </tbody>
@@ -668,7 +679,7 @@
                                 
                                <div  id='nextload'  class="fa-spin overlay  "><i class="fa fa-spinner"> </i></div>
                                 
-                                 <table id="tabHide" style="overflow: scroll; height: 300px;"  class="table  table-striped responsive-utilities  ">
+                                 <table id="tabHide" style="overflow: scroll; height: 300px;"  class="table  table-striped table-hover responsive-utilities  ">
                                         <thead>
                                             <tr class="headings">
                                                
@@ -699,10 +710,13 @@
                                             <div class="btn-group" id="studentPg">
                                                
                                             </div>
+                                             
                                         </div>
+                                    <label id="paginationShowing" class="navbar-right nav-tabs right"></label>
                                     </div>
                                   
                             </div>
+                        
                         </div>
                       <!--   <div style="" class="">
                                         <div class="btn-group" data-toggle="buttons">
@@ -759,8 +773,7 @@
     <script src="theme/js/custom.js"></script>
 
     <!-- moris js -->
-    <script src="jscustom/SectionPage.js"></script>
-     
+    
     <script type="text/javascript" src="theme/js/wizard/jquery.smartWizard.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -786,7 +799,10 @@
 
         });
     </script>
-        
+           <script type="text/javascript" src="theme/js/notify/pnotify.core.js"></script>
+    <script type="text/javascript" src="theme/js/notify/pnotify.buttons.js"></script>
+     <script src="jscustom/SectionPage.js"></script>
+    
 </body>
 
 </html>

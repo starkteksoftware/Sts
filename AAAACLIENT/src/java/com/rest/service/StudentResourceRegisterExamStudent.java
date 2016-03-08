@@ -13,6 +13,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 /**
@@ -26,17 +29,22 @@ public class StudentResourceRegisterExamStudent {
      PreparedStatement setCount = null;
      
      
-    public void insertNewStudentsTable(){
+     public void insertNewStudentsTable(){
+         
+     }
+     
+     
+    public void insertNewStudentsTable(Connection connection){
              
-             
+    /*         
     try{
        javax.naming.InitialContext ctx = new javax.naming.InitialContext();
         javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
-        connection = ds.getConnection();
+        Connection connections = ds.getConnection();
     }
     catch(NamingException | SQLException e ){
         e.printStackTrace();
-    }
+    }  */
           try{   
      setPrimary = connection.prepareStatement("INSERT INTO examstudenttable(matricExam,ExamName,matric) VALUES (?,?,?)");
     setCount = connection.prepareStatement("SELECT * from examstudenttable where examName =?");
@@ -53,13 +61,12 @@ public class StudentResourceRegisterExamStudent {
     }
     
     
-    public String insertNewStudentTable(String student,String exam) throws ArrayIndexOutOfBoundsException{
+    public String insertNewStudentTable(String student,String exam,Connection connection) throws ArrayIndexOutOfBoundsException{
       try{
+          long start = System.currentTimeMillis();
         String [] splitExam = exam.split(",");
-        
-        for(String subjectCode : splitExam){
-            String value = "";
-       
+        Arrays.stream(splitExam).forEach(subjectCode->{
+         
                try 
       {
             System.out.println(" adding "+subjectCode+" matric :"+student);
@@ -87,43 +94,62 @@ public class StudentResourceRegisterExamStudent {
      }
            catch ( SQLException sqlException )
       {
-          connection.rollback();
+                   try {
+                       connection.rollback();
+                   } catch (SQLException ex) {
+                       Logger.getLogger(StudentResourceRegisterExamStudent.class.getName()).log(Level.SEVERE, null, ex);
+                   }
          sqlException.printStackTrace();         
-         return new Gson().toJson("Courses not registered successfully... Please try again");
+         //return new Gson().toJson("Courses not registered successfully... Please try again");
          
       } 
                   
-         
-         if(registeredCourses.containsKey(student)){
+            
+         if(registeredCourses!= null && registeredCourses.containsKey(student)){
            StringBuilder builder = new StringBuilder();
             builder.append(registeredCourses.get(student)).append(",").append(subjectCode);
             registeredCourses.put(student, builder.toString());
             }
-       else{
-         registeredCourses.put(student,subjectCode); 
-         if(!Exam.getNewRegisteredStudents.equals(""))
-          Exam.getNewRegisteredStudents += "," +student;
-         else{
-             Exam.getNewRegisteredStudents = student;  
-         }
-          Exam.registerStudentsExam = connection.prepareStatement("SELECT * FROM newstudenttable WHERE StudentNumber = ? ORDER BY StudentNumber ASC");    
-           
-           Exam.registerStudentsExam.setString(1,student);
-        ResultSet  getResults2 =    Exam.registerStudentsExam.executeQuery();    
-          while(getResults2.next()){
-          StringBuilder builder = new StringBuilder();
-          builder.append("#");
-          builder.append(getResults2.getString("LastName").concat(","));
-            builder.append(getResults2.getString("FirstName").concat(","));
-              builder.append(getResults2.getString("MiddleName").concat(","));
-                builder.append(getResults2.getString("Gender").concat(","));
-                  builder.append(getResults2.getString("StudentNumber"));
-                 studentsRegistered.put(getResults2.getString("StudentNumber"), getResults2.getString("LastName")+" "+getResults2.getString("FirstName"));
-                 Exam.registeredStudents.put(getResults2.getString("StudentNumber"), builder.toString());
-            }
+       else
+               if(registeredCourses!= null ){
+                   try {
+                       registeredCourses.put(student,subjectCode);
+                       if(!Exam.getNewRegisteredStudents.equals(""))
+                           Exam.getNewRegisteredStudents += "," +student;
+                       else{
+                           Exam.getNewRegisteredStudents = student;
+                       }
+                       
+                       Exam.registerStudentsExam = connection.prepareStatement("SELECT * FROM newstudenttable WHERE StudentNumber = ? ORDER BY StudentNumber ASC");
+                       Exam.registerStudentsExam.setString(1,student);
+                       ResultSet  getResults2 =    Exam.registerStudentsExam.executeQuery();
+                      
+                       while(getResults2.next()){
+                           StringBuilder builder = new StringBuilder();
+                           builder.append("#");
+                           builder.append(getResults2.getString("LastName").concat(","));
+                           builder.append(getResults2.getString("FirstName").concat(","));
+                           builder.append(getResults2.getString("MiddleName").concat(","));
+                           builder.append(getResults2.getString("Gender").concat(","));
+                           builder.append(getResults2.getString("StudentNumber"));
+                           studentsRegistered.put(getResults2.getString("StudentNumber"), getResults2.getString("LastName")+" "+getResults2.getString("FirstName"));
+                           Exam.registeredStudents.put(getResults2.getString("StudentNumber"), builder.toString());
+                       }      } catch (SQLException ex) {
+                       Logger.getLogger(StudentResourceRegisterExamStudent.class.getName()).log(Level.SEVERE, null, ex);
+                   }
            }        
-         connection.commit();
-    }
+              try {
+                  connection.commit();
+              } catch (SQLException ex) {
+                  Logger.getLogger(StudentResourceRegisterExamStudent.class.getName()).log(Level.SEVERE, null, ex);
+              }
+         
+        
+        });
+      
+        long end = System.currentTimeMillis();
+          System.err.println("using an enhanced for loop "+(end - start )+"seconds");
+          
         }
         catch(Exception e){
            e.printStackTrace();

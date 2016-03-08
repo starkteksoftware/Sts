@@ -56,7 +56,7 @@ public class FileViewSrc extends HttpServlet {
             out.println("<title>Servlet FileViewSrc</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<video width='100' height='100' controls> <source='http://localhost:8080/AAAACLIENT/ImageRetriever?image="+replace+"' type='video/mp4'> </video>");
+            out.println("<video width='400' height='400' controls> <source='http://localhost:8080/AAAACLIENT/ImageRetriever?image="+replace+"' type='video/mp4'> </video>");
             out.println("</body>");
             out.println("</html>");
             }

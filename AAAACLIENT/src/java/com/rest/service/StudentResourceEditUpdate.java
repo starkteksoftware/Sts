@@ -23,12 +23,13 @@ public class StudentResourceEditUpdate {
     PreparedStatement update = null;
     ResultSet result = null;
     
+      
     public String edit(String matric){
              try{
        javax.naming.InitialContext ctx = new javax.naming.InitialContext();
         javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
         connection = ds.getConnection();
-        edit = connection.prepareStatement("SELECT * from candidatedata WHERE matric =?");
+        edit = connection.prepareStatement("SELECT * from  candidatedata WHERE matric =?");
         edit.setString(1, matric);
         
         result = edit.executeQuery();StringBuilder append = new StringBuilder();
@@ -75,7 +76,7 @@ public class StudentResourceEditUpdate {
         javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
         connection = ds.getConnection();
         
-        update = connection.prepareStatement("UPDATE candidateData SET firstName=?, lastName=?, middleName=?,gender=?,email=?,mobileNumber=?,address=?,Number2=?, address2=?,comment=? Where matric=?");
+        update = connection.prepareStatement("UPDATE candidatedata SET firstName=?, lastName=?, middleName=?,gender=?,email=?,mobileNumber=?,address=?,Number2=?, address2=?,comment=? Where matric=?");
         update.setString(1, firstName);
         update.setString(2, lastName);
         update.setString(3, middleName);

@@ -49,6 +49,7 @@ public class QuetionSetter extends HttpServlet {
       }
       else{
           PopulateExamAndResult upd = new PopulateExamAndResult();
+          System.out.println(question);
           upd.updateDatabase(subject, question, table);
           response.sendRedirect(url);
           

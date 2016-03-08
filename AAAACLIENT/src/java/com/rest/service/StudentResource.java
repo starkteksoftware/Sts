@@ -218,8 +218,8 @@ public class StudentResource {
                 try{
             StudentResourceRegisterExamStudent registerStudent = new StudentResourceRegisterExamStudent();
             registerStudent.insertNewStudentsTable();
-           return new Gson().toJson(registerStudent.insertNewStudentTable(matric, subjects));
-            
+         //  return new Gson().toJson(registerStudent.insertNewStudentTable(matric, subjects));
+            return "";
             
                 }
                 catch(ArrayIndexOutOfBoundsException e){
@@ -266,8 +266,11 @@ public class StudentResource {
          }
          
 
-
-
+        if(status == 8){
+             StudentResourceDeleteExamsUnregisterCandidate deleteExamAndcan = new StudentResourceDeleteExamsUnregisterCandidate();
+             return new Gson().toJson(deleteExamAndcan.prepareDeleteQuery(subjects));
+          }
+ 
 
 
 

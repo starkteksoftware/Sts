@@ -237,13 +237,13 @@ function getReport (matric){
           
           if(value < 5){
                
-  var text ='<li><a id="'+bardata[0]+'::exam" title="view '+bardata[0]+'"  class="showboard" href="javascript:;"><i id="'+bardata[0]+'::exams" class="fa fa-external-link"></i></a>'
+  var text ='<li><a id="'+bardata[0]+'::exam" title="view '+bardata[0]+'"  class="showboard " href="javascript:;"><i id="'+bardata[0]+'::exams" class="fa fa-external-link"></i></a>'
           +'<div class="message_date">'
           +'<h3 class="date text-info">'+bardata[3].split("-")[2]+'</h3>'
           +'<p class="month">'+month+'</p><h4 class="date text-info">'+bardata[3].split("-")[0]+'</h4>'
           +'</div>'
           +'<div class="message_wrapper">'
-          +'<h4 class="heading adejobi" id="'+bardata[0]+'::ex" >'+bardata[0]+'</h4>'
+          +'<h4 class="heading adejobi btn btn-sm" id="'+bardata[0]+'::ex" >'+bardata[0]+'</h4>'
           +' <blockquote class="message"> score : '+bardata[1]+'  time left: '+bardata[2]+'  completed :'+com+' </blockquote>'
           +'<br />'
           +'<p class="url">'
@@ -324,7 +324,7 @@ function getReport (matric){
                 xkey: 'period',
                
                 hideHover: 'auto',
-                barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+                barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB','#3674DB','#26B99A', '#34495E', '#ACADAC', '#3498DB','#3674DB','#26B99A', '#34495E', '#ACADAC', '#3498DB','#3674DB'],
                 ykeys: ['grade', 'sorned'],
                 labels: ['grade', 'SORN'],
                 xLabelAngle: 60

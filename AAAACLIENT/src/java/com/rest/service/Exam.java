@@ -801,8 +801,7 @@ getAllStudentsQuery = connection.prepareStatement("SELECT * FROM newstudenttable
      
         } // end while
      allTotalStudents = result.toString();
-            System.out.println("these are the exams"+allTotalStudents);
-            
+           
             
             
             
@@ -841,10 +840,16 @@ getAllStudentsQuery = connection.prepareStatement("SELECT * FROM newstudenttable
      public String getonGoingExamMethods(){
        
          //manages ongoing exams
-         Initializer.initializer();
+          
+          long seconds = System.currentTimeMillis();
+          Initializer.initializer();
          StartUpClassOngoingExams start = new StartUpClassOngoingExams();
-        start.manageOngoingExam();
+         start.manageOngoingExam();
          start.startOngoingExam();
+         
+         long now = System.currentTimeMillis();
+        System.out.println("took this amount of seconds now "+(now - seconds));
+   
       
       
       return new Gson().toJson(ongoingExam);

@@ -33,18 +33,16 @@ public class ChangeExamState {
     }
      //method sets exam to 2 for taken exams
       public void changeExamStateEnd(){
-      
-  try{
+          try{
              javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-        javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
-                   connection = ds.getConnection(); 
- Exam.changeExamState  =  connection.prepareStatement("DELETE FROM  activeexam "+
-         " WHERE ExamName=?");
- Exam.removeRegisteredStudents = connection.prepareStatement("DELETE  FROM  examstudenttable WHERE ExamName=? ");
-   }
-            catch(SQLException | NamingException e){
+             javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
+             connection = ds.getConnection();
+             Exam.changeExamState  =  connection.prepareStatement("DELETE FROM  activeexam  WHERE ExamName=?");
+             Exam.removeRegisteredStudents = connection.prepareStatement("DELETE  FROM  examstudenttable WHERE ExamName=? ");
+             }
+          catch(SQLException | NamingException e){
                e.printStackTrace();
-            }   
+             }   
           
    
     }

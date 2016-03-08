@@ -45,6 +45,23 @@ function start(){
         filesHelper();
   });
   
+  for (var key in localStorage){
+   console.log(key)
+     if(key.indexOf("_temp_") !== -1){
+          $("#storageQuestions").html($("#storageQuestions").html()+"<li ><a id='"+key+"' class='hello' href='javascript:;'> View "+key+"</a></li>")  ;
+         
+          
+          $(".hello").click(function (e){
+            var load =  confirm("Do you wish to load "+e.target.id +" ?");
+            if(load){
+                 CKEDITOR.instances.editor.setData(localStorage.getItem(e.target.id));
+            }
+           
+          
+       })
+       
+     }
+     }
   
   
   $("#calc").click(function (){
@@ -156,10 +173,8 @@ function start(){
     document.getElementById("typeSrver").value = type;
      document.getElementById("question").value = questionS;
       document.getElementById("table").value = realText;
-       document.getElementById("url").value = sessionStorage.getItem("URL")+"StsTestingjava/CreateExam.html?q=Published";
+       document.getElementById("url").value = sessionStorage.getItem("URL")+"/StsTestingjava/CreateExam.html?q=Published";
        document.getElementById("update").value = update;
-           document.getElementById("formSubject").action = getAction();
-               
                  function getAction(){
     
     
@@ -167,6 +182,9 @@ function start(){
                 
     
 }
+           document.getElementById("formSubject").action = getAction();
+               
+       
                document.getElementById("formSubject").submit();
         return;
           try
@@ -791,6 +809,27 @@ function cl (e){
    
    
   // alert(localStorage.getItem())
+   if(e.target.className == "cke_button_icon cke_button__horizontalrule_icon"){
+       if(localStorage.getItem(localStorage.getItem("ExamSet")+"_temp_") ){
+           localStorage.setItem(localStorage.getItem("ExamSet")+"_temp_",CKEDITOR.instances.editor.getData());
+       }
+       else{
+           localStorage.setItem(localStorage.getItem("ExamSet")+"_temp_",CKEDITOR.instances.editor.getData());
+           document.getElementById("storageQuestions").innerHTML += "<li ><a class='hello' id='" +localStorage.getItem("ExamSet")+"_temp_' href='javascript:;'> View "+localStorage.getItem("ExamSet")+"</a></li>";
+            $(".hello").click(function (e){
+            var load =  confirm("Do you wish to load "+e.target.id +" ?");
+            if(load){
+                
+               
+                CKEDITOR.instances.editor.setData(localStorage.getItem(e.target.id));
+            }
+           
+          
+       })
+        }
+       
+     
+    }
   
     if(e.target.className == "cke_button_icon cke_button__save_icon"){
     
@@ -1021,7 +1060,7 @@ function cl (e){
                        
            
            $("#previewExam").modal();
-           $("#previewExam").click(function (){
+           $("#previewExam").click(function (e){
                e.stopPropagation();
                 
            })

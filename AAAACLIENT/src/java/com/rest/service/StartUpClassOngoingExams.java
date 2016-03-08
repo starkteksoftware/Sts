@@ -32,16 +32,17 @@ public class StartUpClassOngoingExams {
     public static HashMap<String,String> studentsRegistered = new  HashMap<>();
     public static boolean isLogin = false;
     
-       public void manageOngoingExam(){
- try{
-        javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-        javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
-                   connection = ds.getConnection(); 
-    Exam.getOngoingExams = connection.prepareStatement("SELECT * FROM activeexam WHERE Status=1");
-    Exam.getAllRegisteredStudents  = connection.prepareStatement("SELECT * FROM examstudenttable ORDER BY matric ASC ");
-    Exam.insertStudentState = connection.prepareStatement("INSERT INTO activeexamstudents VALUES(?,?,?,?);");
-    Exam.registerStudentsExam = connection.prepareStatement("SELECT * FROM newstudenttable WHERE StudentNumber = ? ORDER BY StudentNumber ASC");    
-           }
+    public void manageOngoingExam(){
+          try{
+              long start = System.currentTimeMillis();
+              javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+              javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
+              connection = ds.getConnection(); Exam.getOngoingExams = connection.prepareStatement("SELECT * FROM activeexam WHERE Status=1");
+              Exam.getAllRegisteredStudents  = connection.prepareStatement("SELECT * FROM examstudenttable ORDER BY matric ASC ");
+              Exam.registerStudentsExam = connection.prepareStatement("SELECT * FROM newstudenttable WHERE StudentNumber = ? ORDER BY StudentNumber ASC");    
+              long end = System.currentTimeMillis();
+              System.out.println("Took "+(end - start )+" seconds in manageOngoingExams get connection and prepare statements ");
+          }
             catch(SQLException | NamingException e){
                e.printStackTrace();
             }   
@@ -50,76 +51,74 @@ public class StartUpClassOngoingExams {
     }
         
        public void allowCandidateStart(){
-        try{
-            System.err.println(" in allow canidates");
-            
-        javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-        javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
+             try{
+                   System.out.println(" in allow canidadates Log In");
+                   long start = System.currentTimeMillis();
+                   javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+                   javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
                    connection = ds.getConnection(); 
                    PreparedStatement allowSign = connection.prepareStatement("SELECT * From newstudenttable");
                    ResultSet getResults2 = allowSign.executeQuery();
                    while(getResults2.next()){
                          StringBuilder builder = new StringBuilder();
-          builder.append("#");
-          builder.append(getResults2.getString("LastName").concat(","));
-            builder.append(getResults2.getString("FirstName").concat(","));
-              builder.append(getResults2.getString("MiddleName").concat(","));
-                builder.append(getResults2.getString("Gender").concat(","));
-                  builder.append(getResults2.getString("StudentNumber"));
-                 studentsRegistered.put(getResults2.getString("StudentNumber"), getResults2.getString("LastName")+" "+getResults2.getString("FirstName"));
-                       System.err.println("builder to string "+builder.toString());
-                 Exam.registeredStudents.put(getResults2.getString("StudentNumber"), builder.toString());
-                 
+                         builder.append("#");
+                         builder.append(getResults2.getString("LastName").concat(","));
+                         builder.append(getResults2.getString("FirstName").concat(","));
+                         builder.append(getResults2.getString("MiddleName").concat(","));
+                         builder.append(getResults2.getString("Gender").concat(","));
+                         builder.append(getResults2.getString("StudentNumber"));
+                         studentsRegistered.put(getResults2.getString("StudentNumber"), getResults2.getString("LastName")+" "+getResults2.getString("FirstName"));
+                         Exam.registeredStudents.put(getResults2.getString("StudentNumber"), builder.toString());
+                  
                
                    }
                   StartUpClassOngoingExams.isLogin = true;
-        }
+                  long end = System.currentTimeMillis();
+                  System.out.println("Took "+(end - start)+" In Registering all Candidates in the database with a an amount of -->  "+studentsRegistered.size()+" Candidates");
+         }
         catch(NamingException | SQLException e){
             
         }
        }
    
-              public void startOngoingExam(){
-                  
+    public void startOngoingExam() {
+              
+        
+              
                File files = new File(System.getProperty("user.home")+System.getProperty("file.separator")+"Images");
                if(!files.isDirectory()){
                    files.mkdir();
                    System.out.println(files.getAbsolutePath());
-                   File file = new File(files.getAbsolutePath()+System.getProperty("file.separator")+"jols.txt");
-                   try{
-                   file.createNewFile();
-                   }
-                   catch(IOException e){
-                     e.printStackTrace();
-                  }
                }
-               
-               
-         System.out.println("control start:1 getting all students registered for exams ");
-         registeredCourses = new HashMap<>();
-       //  ArrayList matrics = new ArrayList();
-         HashMap matrics = new HashMap();
-         Exam.getNewRegisteredStudents = "";
-        ResultSet resultSet1 = null;
-         try{
-         resultSet1 =  Exam.getAllRegisteredStudents.executeQuery(); 
-         while ( resultSet1.next() )
-          {
-         String matricNumber  = resultSet1.getString("matricExam").split("\\*\\*\\*")[0];
-         matrics.put(matricNumber,"");
-       if(registeredCourses.containsKey(matricNumber)){
-           StringBuilder builder = new StringBuilder();
-            builder.append(registeredCourses.get(matricNumber)).append(",").append(resultSet1.getString("ExamName"));
-            registeredCourses.put(matricNumber, builder.toString());
-            }
-       else{
-         registeredCourses.put(matricNumber,resultSet1.getString("ExamName"));   
+                long seconds = System.currentTimeMillis();
+               System.out.println("control start:1 getting all students registered for exams ");
+               registeredCourses = new HashMap<>();
+               HashMap matrics = new HashMap();
+               Exam.getNewRegisteredStudents = "";
+               ResultSet resultSet1 = null;
+                  try{
+                     resultSet1 =  Exam.getAllRegisteredStudents.executeQuery(); 
+                     while ( resultSet1.next() )
+                            {
+                               String matricNumber  = resultSet1.getString("matricExam").split("\\*\\*\\*")[0];
+                               matrics.put(matricNumber,"");
+                               if(registeredCourses.containsKey(matricNumber)){
+                               StringBuilder builder = new StringBuilder();
+                               builder.append(registeredCourses.get(matricNumber)).append(",").append(resultSet1.getString("ExamName"));
+                               registeredCourses.put(matricNumber, builder.toString());
+                                }
+                                else{
+                                registeredCourses.put(matricNumber,resultSet1.getString("ExamName"));   
         
-           }
-         } 
-         
-          
+                                  }
+                            } 
+                             long now = System.currentTimeMillis();
+                             System.out.println("Took this amount of time "+(now - seconds )+"   after registering students in examstudentTable");
+             
+                         
+            
            System.out.println(matrics.size()+" the size ");
+           
             Set<String> keys = matrics.keySet();
               ResultSet getResults2;
            for(String matricNumbers : keys){

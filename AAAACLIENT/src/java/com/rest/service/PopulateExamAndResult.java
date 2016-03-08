@@ -277,10 +277,12 @@ System.err.print("worked");
          javax.naming.InitialContext ctx = new javax.naming.InitialContext();
         javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
         connection = ds.getConnection(); 
-        updateQuestion = connection.prepareStatement("UPDATE examstable SET Question= ? AND tableT =?   WHERE Subject =?");
-          updateQuestion.setString(1, question);
+        updateQuestion = connection.prepareStatement("UPDATE examstable SET Question = ?,  tableT =?   WHERE Subject =?");
+                System.out.println(question);
+        updateQuestion.setString(1, question);
            updateQuestion.setString(2, table);
             updateQuestion.setString(3, subject);
+             
              
               return updateQuestion.executeUpdate();
             }

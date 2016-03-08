@@ -5,9 +5,8 @@
  */
 package com.rest.service;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -111,7 +110,7 @@ public static void main(String[] args){
               e.printStackTrace();
                
           }
-      } */
+      }
        
         
          String fileName = "C:\\Users\\user\\Desktop\\UniversityExamField\\Questions\\Science\\Acid-Base.txt";
@@ -155,7 +154,39 @@ public static void main(String[] args){
 		list.forEach(System.out::println);
 
 	*/
-
+        
+        
+          StudentRegistration student = new StudentRegistration();
+          Connection connection = null;
+          //delete in candidate and newstudentTable from 68;
+          StudentResourceRegisterExamStudent reg = new StudentResourceRegisterExamStudent();
+    
+          String exams = "BiologyTest,advanced_A.T,Biology,BIO_206_T.F,CBT_M.R,Chemistry_JAMB_2013,CRIMINAL_S.R,ECLIPSE_T.F";
+   long start = System.currentTimeMillis();
+      for(int i = 6000; i < 7500; i++){
+       try{   
+            
+ Class.forName("com.mysql.jdbc.Driver");
+  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "ronaldo");  
+  //student.startRegistration("User"+i,"default", "user", "user", "user","user", "", "M", "",connection); 
+  String matric = String.format("%07d", i);
+           System.out.println(matric);
+  reg.insertNewStudentsTable(connection);
+  reg.insertNewStudentTable(matric, exams,connection);
+  if(connection!=null)
+      connection.close();
+       }
+       catch(Exception e){
+          e.printStackTrace();
+       }
+       
+        
+      
+       
+   }
+      long end = System.currentTimeMillis();
+      System.out.println("final time is "+(end - start)+" seconds");
+      
 	
 	}
  

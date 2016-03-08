@@ -153,9 +153,7 @@ public static void main(String[] args){
 	
 		list.forEach(System.out::println);
 
-	*/
-        
-        
+	
           StudentRegistration student = new StudentRegistration();
           Connection connection = null;
           //delete in candidate and newstudentTable from 68;
@@ -179,7 +177,7 @@ public static void main(String[] args){
        catch(Exception e){
           e.printStackTrace();
        }
-       
+      
         
       
        
@@ -187,7 +185,7 @@ public static void main(String[] args){
       long end = System.currentTimeMillis();
       System.out.println("final time is "+(end - start)+" seconds");
       
-	
+	 */
 	}
  
 	  public static TreeMap<String, Integer> SortByValue 

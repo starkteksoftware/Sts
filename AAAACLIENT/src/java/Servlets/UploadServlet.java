@@ -44,7 +44,7 @@ public class UploadServlet extends HttpServlet {
             throws ServletException, IOException {
        
         final String path = System.getProperty("user.home")+System.getProperty("file.separator")+"Images";
-    final Part filePart = request.getPart("file");
+    final Part  filePart = request.getPart("file");
     
     
   

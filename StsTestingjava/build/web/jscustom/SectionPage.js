@@ -247,9 +247,9 @@ function parseLog( asyncRequest )
      var join = "";
    
    
-      join+="<td>"+c+"</td><td style='cursor:pointer' title='Start Exam' class='start-exams ' id='"+split[0]+"***'>"+split[0]+" </td> <td>"+split[1]+" </td>  <td> "+split[2]+"  </td>  <td> "+split[3]+" </td>    <td> "+split[4]+" </td>";
+      join+="<td>"+c+"</td><td style='cursor:pointer' title='Start Exam' class='start-exams  ' id='"+split[0]+"***'>"+split[0]+" </td> <td>"+split[1]+" </td>  <td> "+split[2]+"  </td>  <td> "+split[3]+" </td>    <td> "+split[4]+" </td>";
      
-      
+       
    
     join+="<td> <a href='#startExamination' id='"+split[0]+"' ><i class='fa fa-key' id='"+split[0]+"' title='start "+split[0]+"' ></i> </a> <a style='cursor:pointer'  id='"+split[0]+"' ><i style='cursor:pointer' class='fa fa-times' id='"+split[0]+"' title='remove "+split[0]+"' ></i> </a> "+"</td>"; 
     var addition ="<tr>";addition+=join;addition+="</tr>";
@@ -751,12 +751,7 @@ $("#postExam").click(function (e){
 
 
 
-function multipleAnswerArray(answers){
-    
-    
-    this.answers = answers.sort(answers);
-    
-}
+
  
  function configureHandlers(){
      
@@ -1039,9 +1034,108 @@ function clic(e){
       }
       
       
+     if(e.target.className === "starksMultiple"){
+        $("#prog").show();
+        
+        var getAnswer = [];
+        getAnswer = totalAnswers[presentNumbers].answer;
+        var index = 0;
+       var inside = false;
+         for(var s in getAnswer){
+            if (getAnswer[s] == e.target.id){
+                inside = true;
+                
+                index = s;
+                break;
+            }
+         }
+       if( inside ){
+           
+          
+           var presentAnswer = new answer(presentQuestions,presentNumbers,getAnswer.sort(getAnswer.splice(index,1)));
+           
+           totalAnswers[presentNumbers] = presentAnswer;
+            
+            if(getAnswer.length  === 0){
+                progressBar.pop(presentNumbers);
+                 
+             var percentage =  (progressBar.length/ (totalAnswers.length - 1)) * 100 ;
+             document.getElementById(presentNumbers+".").className = document.getElementById(presentNumbers+".").className.replace(" red","");
+            
+         
+             if(percentage === 100){
+                  $("#postExam").show();
+                  
+             }
+             
+             if(percentage > 60  ){
+             document.getElementById("progs").className = " progress-bar bg-green";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");
+             }
+             else if(percentage > 50  ){
+              document.getElementById("progs").className = " progress-bar bg-blue";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+             else if(percentage > 40 ){
+              document.getElementById("progs").className = " progress-bar bg-orange";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+              
+             else{
+             
+             document.getElementById("progs").className = " progress-bar bg-red";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+             
+             
+           }
+        return;
+       }
+       else{
+           if(getAnswer.length == 0){
+                progressBar.push(presentNumbers);
+             var percentage =  (progressBar.length/ (totalAnswers.length - 1)) * 100 ;
+             document.getElementById(presentNumbers+".").className = document.getElementById(presentNumbers+".").className+" red";
+         
+             if(percentage === 100){
+                  $("#postExam").show();
+                  
+             }
+             
+             if(percentage > 60  ){
+             document.getElementById("progs").className = " progress-bar bg-green";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");
+             }
+             else if(percentage > 50  ){
+              document.getElementById("progs").className = " progress-bar bg-blue";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+             else if(percentage > 40 ){
+              document.getElementById("progs").className = " progress-bar bg-orange";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+              
+             else{
+             
+             document.getElementById("progs").className = " progress-bar bg-red";
+             document.getElementById("progs").setAttribute("style","width:"+percentage+"%");   
+             }
+             
+             
+           }
+           
+           getAnswer.push(e.target.id);
+           
+           var presentAnswer = new answer(presentQuestions,presentNumbers,getAnswer.sort(getAnswer));
+           
+           totalAnswers[presentNumbers] = presentAnswer;
+           
+           
+       }
+       //var presentAnswer = new answer(presentQuestions,presentNumbers,totalAnswers)
+     }
     
-    
-    
+      
 }
 
 function courseRegisterFire(){
@@ -1078,6 +1172,7 @@ function courseRegisterFire(){
  // convert the JSON string to an Object
 
 var data = JSON.parse(asyncRequest.responseText);//  .parse(asyncRequest.responseText);
+
 
       
   if(data.indexOf("Succesfully") !== -1){
@@ -1451,7 +1546,11 @@ function parseData( asyncRequest ){
    }
   
    if(type === "2"){
-                singleAnswer(str);
+   singleAnswer(str);
+   }
+   
+   if(type === "3"){
+       multipleAnswer(str);
    }
   
  
@@ -1609,13 +1708,23 @@ var secId = document.getElementById("seconds");
  function ClickResponse(exam,handler){
      
  }
- 
+ function multipleAnswerArray(question,number,answers){
+    
+    
+    //this.answers = answers.sort(answers);
+    this.question = question;
+    this.number = number;
+    this.answer = answers;
+    
+    
+}
  
  function answer(question,number,answers){
      this.question = question;
      this.number = number;
      this.answer = answers;
  }
+ 
  
  
  function cancelLogin(){

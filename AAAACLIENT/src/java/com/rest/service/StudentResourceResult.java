@@ -28,6 +28,7 @@ public class StudentResourceResult {
     PreparedStatement getRank = null;
     PreparedStatement getOverallRank = null;
     PreparedStatement removeCourse = null;
+    PreparedStatement decrementCourse = null;
     
     
     public String UnregisterStudent(String matric,String exam){
@@ -36,9 +37,13 @@ public class StudentResourceResult {
          javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup("jdbc/ConnectionPool");
          connection = ds.getConnection();
          removeCourse = connection.prepareStatement("DELETE from examstudenttable where matricExam=? ");
-              System.out.println(matric+"***"+exam);
+         decrementCourse = connection.prepareStatement("Update activeexam SET RegisteredCandidates = (RegisteredCandidates - 1 ) WHERE ExamName = ? ");
+         connection.setAutoCommit(false);
          removeCourse.setString(1, matric+"***"+exam);
          removeCourse.executeUpdate();
+         decrementCourse.setString(1, exam);
+         decrementCourse.executeUpdate();
+         connection.commit();
          RemoveId.removeId(matric, loggedIn,Exam.registeredCourses,exam);
          
          return new Gson().toJson("1");

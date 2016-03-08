@@ -45,6 +45,10 @@
         <servlet-name>QuetionSetter</servlet-name>
         <servlet-class>Servlets.QuetionSetter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FormUpload</servlet-name>
+        <servlet-class>Servlets.FormUpload</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -92,6 +96,10 @@
     <servlet-mapping>
         <servlet-name>QuetionSetter</servlet-name>
         <url-pattern>/QuetionSetter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormUpload</servlet-name>
+        <url-pattern>/FormUpload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

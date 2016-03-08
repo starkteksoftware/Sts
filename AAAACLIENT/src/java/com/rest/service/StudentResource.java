@@ -218,8 +218,8 @@ public class StudentResource {
                 try{
             StudentResourceRegisterExamStudent registerStudent = new StudentResourceRegisterExamStudent();
             registerStudent.insertNewStudentsTable();
-         //  return new Gson().toJson(registerStudent.insertNewStudentTable(matric, subjects));
-            return "";
+           return new Gson().toJson(registerStudent.insertNewStudentTable(matric, subjects));
+            
             
                 }
                 catch(ArrayIndexOutOfBoundsException e){

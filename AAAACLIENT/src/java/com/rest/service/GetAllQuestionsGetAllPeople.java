@@ -17,7 +17,7 @@ import javax.naming.NamingException;
  * @author bola odesile
  */
 public class GetAllQuestionsGetAllPeople {
-  static Connection connection = null;
+      static Connection connection = null;
     static String getAllQuestions(String exam){
          try{
                 javax.naming.InitialContext ctx = new javax.naming.InitialContext();
@@ -44,7 +44,7 @@ public class GetAllQuestionsGetAllPeople {
     
     static String getAllPeople(String time,String subject,String feed,String amount){
          ResultSet resultSet = null;
-     String a = null;
+     
       try 
       {
           getQuestions.setString(1, subject );
@@ -75,7 +75,7 @@ public class GetAllQuestionsGetAllPeople {
            Exam.questionTypeAndTime.add(time);
            Exam.questionTypeAndTime.add(feed);
            Exam.questionTypeAndTime.add(resultSet.getString("Author"));
-          Exam.allExams.put(resultSet.getString("Subject"),   Exam.questionTypeAndTime);
+           Exam.allExams.put(resultSet.getString("Subject"),   Exam.questionTypeAndTime);
         } // end while
       } // end try
       catch ( SQLException sqlException )

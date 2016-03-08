@@ -1226,7 +1226,7 @@ function previewForm(){
                        
            
            $("#previewExam").modal();
-           $("#previewExam").click(function (){
+           $("#previewExam").click(function (e){
                e.stopPropagation();
                 
            })

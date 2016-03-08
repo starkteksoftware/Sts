@@ -49,7 +49,7 @@ public class StudentRegistration {
       registration = connection.prepareStatement("INSERT INTO candidatedata (email,password,lastName,firstName,"+
               "middleName,institution,mobileNumber,gender,dob,matric) VALUES(?,?,?,?,?,?,?,?,?,?);");
       
-      selectAllStudents = connection.prepareStatement("SELECT * FROM candidatedata");
+      selectAllStudents = connection.prepareStatement("SELECT * FROM candidatedata ");
       
         ResultSet resultSet = selectAllStudents.executeQuery();
       int counter = 0; 

@@ -41,16 +41,6 @@ public class InsertStudentsDatabaseQueryXcelSheet {
         
     }
     
-     
-    public void createPreparedStatement(Connection connection) throws SQLException{
-        
-        
-        Exam.registerStudents = connection.prepareStatement("INSERT INTO newstudenttable(FirstName,LastName,MiddleName,Gender,StudentNumber) VALUES(?,?,?,?,?);");
-    
-          
-        
-    }
-    
     public String returnStatusQuery(String first,String last,String middle,String gender,String studentNumber){
           try 
       {

@@ -5,7 +5,7 @@
     "author": "adewale jolaade",
      "description" : "An E learning app",
     "contributors": ["dimeji","babajide"],
-    "main":"main.js",
+    "main":"server.js",
     "license": "ISC",
     "repository":{
         "type":"git",

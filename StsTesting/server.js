@@ -372,8 +372,9 @@ var upload = multer({ storage: storage });
 
 
 MongoClient.connect(url, function(err, db) {
- assert.equal(null, err);
-   
+ //assert.equal(null, err);
+   console.log(err);
+   console.log("connected");
 
 });
 

@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>Multiparty Chatroom</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <script type="text/javascript" src="/easyrtc/easyrtc.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/demo_room.css" />
+        <script type="text/javascript" src="js/angular/demo_multiparty.js"></script>
+    </head>
+    <style>
+        
+.transit {
+    transition: left 1s, top 1s, right 1s, bottom 1s, width 1s, height 1s, transform 1s;
+    -moz-transition: left 1s, top 1s, right 1s, bottom 1s, width 1s, height 1s, -moz-transform 1s;
+    -webkit-transition: left 1s, top 1s, right 1s, bottom 1s, width 1s, height 1s, -webkit-transform 1s;
+    -o-transition: left 1s, top 1s, right 1s, bottom 1s, width 1s, height 1s,-o-transform 1s;
+}
+
+.hidden {
+    background-color: transparent;
+    border-color: 2px solid blue;
+}
+
+.boxCommon {
+    position:absolute;
+}
+
+.closeButton {
+    display: none; /* hide the easyApp's close button because we have our own */
+}
+
+.thumbCommon {
+    z-index:2;
+    box-shadow: 5px 5px 5px #000000;
+}
+
+#controlArea {
+    background-color: #ff8000;
+}
+
+body {
+    background-color:black;
+    margin-left:0px;
+    margin-top:0px;
+}
+
+#killButton {
+    opacity:0.7;
+}
+
+#killButton:hover {
+    opacity:1.0;
+}
+
+#muteButton {
+    opacity:0.7;
+}
+
+#muteButton:hover {
+    opacity:1.0;
+}
+
+#textentryBox {
+    border:2px solid #a0ffa0;
+    border-radius:10px;
+    z-index:5;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px #000000;
+    font-family: 'Courier New',Courier,monospace;
+}
+
+#textentryField {
+    font-size:x-large;
+    margin: 20px;
+}
+
+#textentrySubmit {
+    font-size:larger;
+}
+
+#textentryCancel {
+    font-size:larger;
+}
+        
+    </style>
+    <body onload="appInit()">
+        <div id="fullpage"  class="boxCommon" style="background-image:url(/images/irongrip.png); background-repeat: no-repeat;background-attachment: fixed;
+    background-position: center; ">
+            <video id="box0" class="transit boxCommon thumbCommon easyRTCMirror" muted="muted" volume="0" ></video>
+            <video id="box1" class="transit boxCommon thumbCommon" style="visibility:hidden"></video>
+            <video id="box2" class="transit boxCommon thumbCommon" style="visibility:hidden"></video>
+            <video id="box3" class="transit boxCommon thumbCommon" style="visibility:hidden"></video>
+            <div id="textentryBox" onsubmit="sendText()" style="display:none" >
+                <input type="text" id="textentryField" placeholder="Enter text" class="transit boxcommon" /><br>
+                <br/>
+                <p></p>
+                <button id="textentrySubmit" style="float:right;margin-right:1em" onclick="sendText()">Send</button>
+                <button id="textentryCancel" style="float:left;margin-left:1em" onclick="cancelText()">Cancel</button>
+            </div>
+
+            <img id="killButton" class="transit boxCommon" onclick="killActiveBox()" src="images/button_close.png" style="display:none;z-index:3" alt="close button" />
+            <img id="muteButton" class="transit boxCommon" onclick ="muteActiveBox()" src="images/button_mute.png" style="display:none;z-index:3" alt="mute button" />
+            <button id="textEntryButton" class="transit boxCommon" onclick ="showTextEntry()"  style="z-index:3;display:none"  >Send Message</button>
+           
+        </div>
+    </body>
+</html>

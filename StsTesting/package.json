@@ -3,13 +3,19 @@
     "version": "1.0.0",
     "keywords": ["util", "functional", "server", "client", "browser"],
     "author": "adewale jolaade",
+     "description" : "An E learning app",
     "contributors": ["dimeji","babajide"],
     "main":"main.js",
+    "license": "ISC",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/starkteksoftware/Sts/tree/developer/StsTesting"
+    },
     "dependencies": {
         "express":"latest",
         "easyrtc":"1.0.15",
         "socket.io":"0.9.16",
-        "mongodb":"3.0.3",
+        "mongodb":"latest",
         "multer":"1.1.0"
     },
     "engines": {
